@@ -33,7 +33,13 @@
 (yas-global-mode 1)
 
 (require 'flycheck)
-(flycheck-add-mode 'javascript-standard 'js-mode)
+
+(require 'js2-mode)
+(add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
+;; suppress js2-mode check (workaround)
+(setq js2-strict-missing-semi-warning nil)
+;; use flycheck-mode (javascript-eslint by default) to check style
+(add-hook 'js2-mode-hook 'flycheck-mode)
 
 ;; c-mode
 (setq c-default-style "linux")
@@ -45,11 +51,6 @@
 ;; (add-hook 'c-mode-hook 'company-mode)
 (add-hook 'c++-mode-hook 'whitespace-mode)
 
-;; js-mode
-(setq-default js-indent-level 2)
-(add-hook 'js-mode-hook 'flycheck-mode)
-(add-hook 'js-mode-hook 'whitespace-mode)
-
 ;; python-mode
 (add-hook 'python-mode-hook 'jedi:setup)
 
@@ -57,3 +58,17 @@
 (ac-config-default)
 (add-to-list 'ac-modes 'c-mode)
 (add-to-list 'ac-modes 'c++-mode)
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   (quote
+    (js2-mode yasnippet polymode jedi helm flycheck diminish coffee-mode bind-key badger-theme atom-one-dark-theme))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
