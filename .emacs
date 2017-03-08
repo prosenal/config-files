@@ -1,31 +1,48 @@
-;;; Alex's .emacs file, 2016
-;;; C-h ? for help
-;;; C-h v to describe variable
-;;; C-h f to describe function
+;; Alex's .emacs file, 2016
+;; C-h ? for help
+;; C-h v to describe variable
+;; C-h f to describe function
+
+(add-to-list 'custom-theme-load-path
+             "~/.emacs.d/elpa/atom-one-dark-theme-20170117.1905")
+
+(load-theme 'atom-one-dark t)
+
+(show-paren-mode t)
+(scroll-bar-mode -1)
+(column-number-mode t)
+(electric-pair-mode t)
+
+(setq visible-bell t)
 
 (setq inhibit-splash-screen t)
-
-(column-number-mode t)
-(show-paren-mode t)
-
 
 (if window-system (tool-bar-mode 0))
 
 (setq-default indent-tabs-mode nil)
 
 (require 'package)
-(add-to-list 'package-archives
-             '("melpa" . "http://melpa.org/packages/"))
+(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
 (package-initialize)
+
+(require 'helm-config)
+(global-set-key (kbd "M-x") #'helm-M-x)
+(global-set-key (kbd "C-x C-f") #'helm-find-files)
+(helm-mode 1)
+
+(yas-global-mode 1)
 
 (require 'flycheck)
 (flycheck-add-mode 'javascript-standard 'js-mode)
 
 ;; c-mode
-(setq-default c-default-style "user")
+(setq c-default-style "linux")
+(setq-default c-basic-offset 4)
+(c-set-offset 'substatement-open '0) ;; brackets at same indentation as the statements they open
 (add-hook 'c-mode-hook 'whitespace-mode)
 
 ;; c++-mode
+;; (add-hook 'c-mode-hook 'company-mode)
 (add-hook 'c++-mode-hook 'whitespace-mode)
 
 ;; js-mode
@@ -34,28 +51,9 @@
 (add-hook 'js-mode-hook 'whitespace-mode)
 
 ;; python-mode
-(add-hook 'python-mode-hook 'whitespace-mode)
+(add-hook 'python-mode-hook 'jedi:setup)
 
-;; irony mode
-(add-hook 'c++-mode-hook 'company-mode)
-(add-hook 'c-mode-hook 'company-mode)
- 
-
-;; custom-set-variables was added by Custom.
-;; If you edit it by hand, you could mess it up, so be careful.
-;; Your init file should contain only one such instance.
-;; If there is more than one, they won't work right.
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   (quote
-    (sql-indent solarized-theme python-environment popup polymode haskell-mode git-commit flycheck epc diminish bind-key alect-themes))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
+;; auto-complete mode
+(ac-config-default)
+(add-to-list 'ac-modes 'c-mode)
+(add-to-list 'ac-modes 'c++-mode)
