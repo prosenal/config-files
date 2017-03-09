@@ -14,7 +14,8 @@
 (electric-pair-mode t)
 
 (setq visible-bell t)
-
+(setq make-backup-files nil)
+(setq auto-save-default nil)
 (setq inhibit-splash-screen t)
 
 (if window-system (tool-bar-mode 0))
@@ -41,6 +42,10 @@
 ;; use flycheck-mode (javascript-eslint by default) to check style
 (add-hook 'js2-mode-hook 'flycheck-mode)
 
+(require 'json-mode)
+(add-to-list 'auto-mode-alist '("\\.json" . json-mode))
+(add-hook 'json-mode-hook 'flycheck-mode)
+
 ;; c-mode
 (setq c-default-style "linux")
 (setq-default c-basic-offset 4)
@@ -65,7 +70,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (js2-mode yasnippet polymode jedi helm flycheck diminish coffee-mode bind-key badger-theme atom-one-dark-theme))))
+    (markdown-mode json-mode js2-mode yasnippet polymode jedi helm flycheck diminish coffee-mode bind-key badger-theme atom-one-dark-theme))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
