@@ -2,14 +2,16 @@ echo "grahics card:" $(cat /proc/acpi/bbswitch)
 
 function emacs() {/usr/bin/emacs $@ -mm &}
 
+function evince() {/usr/bin/evince $@ &}
+
 typeset -U path
 path=(~/bin $(ruby -e 'print Gem.user_dir')/bin $path[@])
 
 export NVM_DIR="/home/alex/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
-# https://docs.coala.io/en/latest/Users/Shell_Autocompletion.html
-autoload bashcompinit
-bashcompinit
+export PYENV_ROOT="$HOME/Code/pyenv"
+path=($PYENV_ROOT/bin $path[@])
+eval "$(pyenv init -)"
 
-eval "$(register-python-argcomplete coala)"
+eval "$(pyenv virtualenv-init -)"
