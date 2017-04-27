@@ -1,0 +1,6 @@
+URxvt.foreground: #E0E0E0
+URxvt.background: #000000
+
+URxvt.scrollBar:  False
+
+URxvt.font:	  xft:inconsolata:size=16
