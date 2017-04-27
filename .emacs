@@ -77,18 +77,3 @@
 
 (add-to-list 'web-mode-engines-alist '("django" . "\\.html\\'"))
 (add-hook 'web-mode-hook (lambda () (electric-pair-local-mode -1)))
-
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   (quote
-    (web-mode yaml-mode haskell-mode markdown-mode json-mode js2-mode yasnippet polymode jedi helm flycheck diminish coffee-mode bind-key badger-theme atom-one-dark-theme))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
