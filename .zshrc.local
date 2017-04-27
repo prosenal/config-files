@@ -1,0 +1,31 @@
+#echo "grahics card:" $(cat /proc/acpi/bbswitch)
+
+# function emacs() {/usr/bin/emacs $@ -mm &}
+
+# function evince() {/usr/bin/evince $@ &}
+
+# typeset -U path
+# path=(~/bin $(ruby -e 'print Gem.user_dir')/bin $path[@])
+
+# export NVM_DIR="/home/alex/.nvm"
+# [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+
+# Starting pyenv, as per:
+# https://github.com/pyenv/pyenv#basic-github-checkout
+export PYENV_ROOT="$HOME/Code/pyenv"
+path=($PYENV_ROOT/bin $path[@])
+eval "$(pyenv init -)"
+
+# Starting pyenv-vitrualenv, as per:
+# https://github.com/pyenv/pyenv-virtualenv#installing-as-a-pyenv-plugin
+eval "$(pyenv virtualenv-init -)"
+
+# Starting ssh-agent with systemd, as per:
+# https://wiki.archlinux.org/index.php/SSH_keys#ssh-agent
+# Systemd method complained there was no ssh-agent.service file
+if ! pgrep -u "$USER" ssh-agent > /dev/null; then
+    ssh-agent > ~/.ssh-agent-thing
+fi
+if [[ "$SSH_AGENT_PID" == "" ]]; then
+    eval "$(<~/.ssh-agent-thing)"
+fi
