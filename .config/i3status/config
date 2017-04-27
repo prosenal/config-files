@@ -18,7 +18,9 @@ order += "wireless _first_"
 order += "ethernet _first_"
 order += "battery all"
 # order += "load"
-order += "volume master"
+# order += "volume master"
+order += "volume speaker"
+order += "volume headphone"
 order += "tztime local"
 
 ipv6 {
@@ -26,7 +28,7 @@ ipv6 {
 }
 
 wireless _first_ {
-        format_up = " %quality at %essid"
+        format_up = "%quality at %essid"
         format_down = ""
         color_good = "#00AA00"
 }
@@ -40,15 +42,15 @@ ethernet _first_ {
 battery all {
         format = "%status %percentage (%consumption)"
         format_down = "No battery"
-        status_chr = ""
-        status_bat = ""
-        status_full = ""
+        status_chr = ""
+        status_bat = ""
+        status_full = ""
         low_threshold = 10
         threshold_type = percentage
 }
 
 tztime local {
-        format = "%Y-%m-%d %H:%M"
+        format = " %Y-%m-%d %H:%M"
 }
 
 load {
@@ -64,6 +66,17 @@ disk "/" {
 volume master {
        format = " %volume"
        format_muted = "muted"
-       color_good = "#00FF00"
        separator_block_width = 20
+}
+
+volume speaker {
+       mixer = "Speaker"
+       format = " %volume"
+       format_muted = ""
+}
+
+volume headphone {
+       mixer = "Headphone"
+       format = " %volume"
+       format_muted = ""
 }
