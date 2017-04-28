@@ -22,6 +22,8 @@
 
 (setq-default indent-tabs-mode nil)
 
+(set-default-font "Inconsolata-16")
+
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
 (package-initialize)

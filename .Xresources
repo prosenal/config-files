@@ -4,3 +4,5 @@ URxvt.background: #000000
 URxvt.scrollBar:  False
 
 URxvt.font:	  xft:inconsolata:size=16
+
+Emacs.font:       Inconsolata-16
