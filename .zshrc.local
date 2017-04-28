@@ -1,6 +1,6 @@
 #echo "grahics card:" $(cat /proc/acpi/bbswitch)
 
-# function emacs() {/usr/bin/emacs $@ -mm &}
+function emacs() {/usr/bin/emacs $@ -mm &}
 
 # function evince() {/usr/bin/evince $@ &}
 
