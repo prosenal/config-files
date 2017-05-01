@@ -6,7 +6,19 @@
 (add-to-list 'custom-theme-load-path
              "~/.emacs.d/elpa/atom-one-dark-theme-20170117.1905")
 
-(load-theme 'atom-one-dark t)
+(add-to-list 'custom-theme-load-path
+             "~/.emacs.d/elpa/afternoon-theme-20140104.1059")
+
+(add-to-list 'custom-theme-load-path
+             "~/.emacs.d/elpa/darkokai-theme-20160803.2058/")
+
+(add-to-list 'custom-theme-load-path
+             "~/.emacs.d/elpa/monokai-alt-theme-20170325.1430/")
+
+(add-to-list 'custom-theme-load-path
+             "~/.emacs.d/elpa/monokai-theme-20170314.1612/")
+
+(load-theme 'monokai t)
 
 (show-paren-mode t)
 (scroll-bar-mode -1)
@@ -22,7 +34,7 @@
 
 (setq-default indent-tabs-mode nil)
 
-(set-default-font "Inconsolata-16")
+(set-default-font "Inconsolata-14")
 
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
@@ -78,4 +90,5 @@
 (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
 
 (add-to-list 'web-mode-engines-alist '("django" . "\\.html\\'"))
-(add-hook 'web-mode-hook (lambda () (electric-pair-local-mode -1)))
+(setq web-mode-enable-auto-closing t)
+(setq web-mode-enable-auto-pairing t)
