@@ -21,6 +21,7 @@ order += "battery all"
 order += "volume master"
 # order += "volume speaker"
 # order += "volume headphone"
+order += "keyboard_layout"
 order += "tztime local"
 
 ipv6 {
@@ -50,6 +51,15 @@ battery all {
         threshold_type = percentage
 }
 
+keyboard_layout {
+       cache_timeout = 0
+       format="{layout}"
+       color_ru = "#0000FF"
+       color_us = "#00AA00"
+       color_de = "#AA0000"
+       separator_block_width = 20
+}
+
 tztime local {
         format = " %a %d %B %H:%M"
 }
@@ -67,7 +77,6 @@ disk "/" {
 volume master {
        format = " %volume"
        format_muted = "muted"
-       separator_block_width = 20
 }
 
 volume speaker {
