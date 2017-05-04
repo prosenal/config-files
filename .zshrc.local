@@ -1,12 +1,10 @@
-#echo "grahics card:" $(cat /proc/acpi/bbswitch)
+echo "grahics card:" $(cat /proc/acpi/bbswitch)
 
 function emacs() {/usr/bin/emacs $@ -nw}
 
-function mupdf() {/usr/bin/mupdf $@ &}
+function i3lock() {/usr/bin/i3lock -c "#000000" $@}
 
-function i3lock() {/usr/bin/i3lock $@ -c "#000000"}
-
-# function evince() {/usr/bin/evince $@ &}
+function evince() {/usr/bin/evince $@ &}
 
 # typeset -U path
 # path=(~/bin $(ruby -e 'print Gem.user_dir')/bin $path[@])
@@ -35,3 +33,7 @@ fi
 if [[ "$SSH_AGENT_PID" == "" ]]; then
     eval "$(<~/.config/all3fox/ssh-agent-thing)" > /dev/null
 fi
+
+# Map Control to CapsLock
+# Setting in .xinitrc and/or in .config/i3/config did not work
+xmodmap ~/.Xmodmap
