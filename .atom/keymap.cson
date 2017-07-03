@@ -32,8 +32,21 @@
 # http://flight-manual.atom.io/using-atom/sections/basic-customization/#_cson
 
 'body':
+    'ctrl-i': 'application:new-file'
+
     'alt-j': 'pane:show-previous-item'
     'alt-;': 'pane:show-next-item'
+
+    'ctrl-shift-j': 'pane:move-item-left'
+    'ctrl-:': 'pane:move-item-right'
+
+    'ctrl-x up': 'pane:split-up-and-copy-active-item'
+    'ctrl-x down': 'pane:split-down-and-copy-active-item'
+
+    'ctrl-x left': 'pane:split-left-and-copy-active-item'
+    'ctrl-x right': 'pane:split-right-and-copy-active-item'
+
+    'ctrl-/': 'core:undo'
 
 'atom-text-editor':
     'ctrl-h': 'core:select-all'
@@ -41,14 +54,23 @@
     'ctrl-a': 'editor:move-to-beginning-of-line'
     'ctrl-e': 'editor:move-to-end-of-line'
 
-    'ctrl-o': 'core:move-up'
-    'ctrl-alt-o': 'editor:move-to-beginning-of-previous-paragraph'
+    'ctrl-o': 'fuzzy-finder:toggle-file-finder'
 
-    'ctrl-i': 'core:move-down'
-    'ctrl-alt-i': 'editor:move-to-beginning-of-next-paragraph'
+    'ctrl-p': 'core:move-up'
+    'ctrl-alt-p': 'editor:move-to-beginning-of-previous-paragraph'
+
+    'ctrl-n': 'core:move-down'
+    'ctrl-alt-n': 'editor:move-to-beginning-of-next-paragraph'
 
     'ctrl-j': 'core:move-left'
     'ctrl-alt-j': 'editor:move-to-beginning-of-word'
 
     'ctrl-;': 'core:move-right'
     'ctrl-alt-;': 'editor:move-to-end-of-word'
+
+    'ctrl-k ctrl-k': 'editor:cut-to-end-of-line'
+
+    'ctrl-y': 'core:paste'
+    'ctrl-/': 'core:undo'
+
+    'ctrl-:': 'unset!'
