@@ -48,11 +48,18 @@
 
     'ctrl-/': 'core:undo'
 
+    'ctrl-shift-P': 'core:select-up'
+    'ctrl-shift-N': 'core:select-down'
+
 'atom-text-editor':
+    'tab': 'editor:auto-indent'
+
     'ctrl-h': 'core:select-all'
 
     'ctrl-a': 'editor:move-to-beginning-of-line'
+    'ctrl-shift-A': 'editor:select-to-beginning-of-line'
     'ctrl-e': 'editor:move-to-end-of-line'
+    'ctrl-shift-E': 'editor:select-to-end-of-line'
 
     'ctrl-o': 'fuzzy-finder:toggle-file-finder'
 
@@ -74,3 +81,5 @@
     'ctrl-/': 'core:undo'
 
     'ctrl-:': 'unset!'
+
+    'alt-x': 'command-palette:toggle'
