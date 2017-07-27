@@ -75,6 +75,7 @@
     'ctrl-;': 'core:move-right'
     'ctrl-alt-;': 'editor:move-to-end-of-word'
 
+    'ctrl-d': 'core:delete'
     'ctrl-k ctrl-k': 'editor:cut-to-end-of-line'
 
     'ctrl-y': 'core:paste'
