@@ -78,9 +78,13 @@
     'ctrl-d': 'core:delete'
     'ctrl-k ctrl-k': 'editor:cut-to-end-of-line'
 
+    'ctrl-k ;': 'pane:split-right-and-copy-active-item'
+    'ctrl-k j': 'pane:split-left-and-copy-active-item'
+
+    'ctrl-k ctrl-;': 'window:focus-pane-on-right'
+    'ctrl-k ctrl-j': 'window:focus-pane-on-left'
+
     'ctrl-y': 'core:paste'
     'ctrl-/': 'core:undo'
-
-    'ctrl-:': 'unset!'
 
     'alt-x': 'command-palette:toggle'
