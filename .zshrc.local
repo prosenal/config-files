@@ -1,13 +1,32 @@
 echo "grahics card:" $(cat /proc/acpi/bbswitch)
 
-function emacs() {/usr/bin/emacs $@ -nw}
+function gitg() {/usr/bin/gitg $@ &}
+
+function emacs() {/usr/bin/emacs $@ &}
 
 function i3lock() {/usr/bin/i3lock -c "#000000" $@}
 
 function evince() {/usr/bin/evince $@ &}
 
 # typeset -U path
-# path=(~/bin $(ruby -e 'print Gem.user_dir')/bin $path[@])
+path=(~/bin $(ruby -e 'print Gem.user_dir')/bin $path[@])
+
+# Specify location of Android SDK (managed by Android Studio)
+export ANDROID_HOME=/home/alex/Android/Sdk
+
+# Specify location of Android NDK (managed by Android Studio, required for Code/scrypt)
+# export NDK_ROOT=/home/alex/Android/Sdk/ndk-bundle
+
+# Add android stuff so that appmon sees it
+path=(~/bin $ANDROID_HOME/platform-tools $path[@])
+path=(~/bin $ANDROID_HOME/build-tools/27.0.1 $path[@])
+
+# Add more android binaries to the path:
+path=(~/bin $ANDROID_HOME/tools $path[@])
+path=(~/bin $ANDROID_HOME/ndk-bundle $path[@])
+
+# Set dexprotector home
+export DEXPROTECTOR8_HOME=/home/alex/Code/bsm-wallet/dexprotector
 
 # Load manually installed nvm, as per:
 # https://github.com/all3fox/nvm#git-install
@@ -33,7 +52,3 @@ fi
 if [[ "$SSH_AGENT_PID" == "" ]]; then
     eval "$(<~/.config/all3fox/ssh-agent-thing)" > /dev/null
 fi
-
-# Map Control to CapsLock
-# Setting in .xinitrc and/or in .config/i3/config did not work
-xmodmap ~/.Xmodmap
