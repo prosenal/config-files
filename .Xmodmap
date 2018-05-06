@@ -1,4 +1,0 @@
-! Three lines below remove caps lock and remap it to left control
-clear lock
-keycode 66 = Control_L
-add control = Control_L
