@@ -13,7 +13,7 @@ set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango: Inconsolata LGC for Powerline Medium 12
+font pango: Inconsolata LGC for Powerline 12
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
@@ -92,16 +92,29 @@ bindsym $mod+a focus parent
 # focus the child container
 #bindsym $mod+d focus child
 
-set $workspace1  "0 &#xf109;"
-set $workspace2  "1 &#xf109;"
-set $workspace3  "2 &#xf003;"
-set $workspace4  "3 &#xf080;"
-set $workspace5  "4 &#xf080;"
-set $workspace6  "5 &#xf080;"
-set $workspace7  "6 &#xf109;"
-set $workspace8  "7 &#xf109;"
-set $workspace9  "8 &#xf269;"
-set $workspace10 "9 &#xf269;"
+# terminal
+set $workspace1  "9 &#xf109;"
+# terminal
+set $workspace2  "8 &#xf109;"
+# email
+set $workspace3  "7 &#xf003;"
+# statistics
+set $workspace4  "6 &#xf080;"
+ # statistics
+set $workspace5  "5 &#xf080;"
+ # statistics
+set $workspace6  "4 &#xf080;"
+# terminal
+set $workspace7  "3 &#xf109;"
+ # terminal
+set $workspace8  "2 &#xf109;"
+ # firefox logo
+set $workspace9  "1 &#xf269;"
+ # firefox logo
+set $workspace10 "0 &#xf269;"
+
+bindsym $mod+Tab workspace back_and_forth
+workspace_auto_back_and_forth yes
 
 # switch to workspace
 bindsym $mod+1 workspace $workspace1
@@ -190,11 +203,14 @@ bindsym XF86AudioPrev exec playerctl previous
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-        font pango: FontAwesome, Inconsolata LGC for Powerline Medium 12
+        font pango: FontAwesome, Inconsolata LGC for Powerline 12
         status_command py3status -c ~/.config/i3status/config
 }
 
 # add fast screenshotting
 bindsym $mod+Shift+s exec gnome-screenshot
-# remove window decorations
+
+# Add shortcut for i3lock
+bindsym $mod+Control+L exec i3lock
+
 new_window none
