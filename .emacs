@@ -1,4 +1,4 @@
-;; Alex's .emacs file, 2016
+;; Alex's .emacs file, 2018
 ;; C-h ? for help
 ;; C-h v to describe variable
 ;; C-h f to describe function
@@ -18,7 +18,7 @@
 ;; (add-to-list 'custom-theme-load-path
 ;;              "~/.emacs.d/elpa/monokai-theme-20170314.1612/")
 
-(add-to-list 'custom-theme-load-path "~/.emacs.d/elpa/monokai-theme-20171013.236")
+(add-to-list 'custom-theme-load-path "~/.emacs.d/elpa/monokai-theme-20180402.221")
 
 (load-theme 'monokai t)
 
