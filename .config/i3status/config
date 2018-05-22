@@ -36,16 +36,20 @@ wireless _first_ {
 
 ethernet _first_ {
         # if you use %speed, i3status requires root privileges
-        format_up = "\uf368 %ip"
+        format_up = "\uf2b5 %ip"
         format_down = ""
         color_good = "#00AA00"
 }
 
+# battery_level {
+#         format = "{icon}{percent}%"
+#         charging_character="\uf487"
+# }
 battery all {
         # also %status and (%consumption)
         format = "%status %percentage"
         format_down = "No battery"
-        status_chr = "a"
+        status_chr = "\uf110"
         status_bat = "\uf240"
         status_full = "c"
         low_threshold = 20
