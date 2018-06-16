@@ -171,6 +171,12 @@ mode "resize" {
         bindsym Escape mode "default"
 }
 
+# A trick to pass *all* shortcuts over VNC to another i3
+mode "pass-through" {
+     bindsym $mod+t mode "default"
+}
+bindsym $mod+t mode "pass-through"
+
 bindsym $mod+r mode "resize"
 
 # For the configs below to take effect, install pulseaudio and reboot
@@ -211,6 +217,6 @@ bar {
 bindsym $mod+Shift+s exec gnome-screenshot
 
 # Add shortcut for i3lock
-bindsym $mod+Control+L exec i3lock
+bindsym $mod+Control+L exec i3lock -c "#000000"
 
 new_window none
