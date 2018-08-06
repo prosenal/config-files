@@ -1,90 +1,29 @@
-# Your keymap
-#
-# Atom keymaps work similarly to style sheets. Just as style sheets use
-# selectors to apply styles to elements, Atom keymaps use selectors to associate
-# keystrokes with events in specific contexts. Unlike style sheets however,
-# each selector can only be declared once.
-#
-# You can create a new keybinding in this file by typing "key" and then hitting
-# tab.
-#
-# Here's an example taken from Atom's built-in keymap:
-#
-# 'atom-text-editor':
-#   'enter': 'editor:newline'
-#
-# 'atom-workspace':
-#   'ctrl-shift-p': 'core:move-up'
-#   'ctrl-p': 'core:move-down'
-#
-# You can find more information about keymaps in these guides:
-# * http://flight-manual.atom.io/using-atom/sections/basic-customization/#_customizing_keybindings
-# * http://flight-manual.atom.io/behind-atom/sections/keymaps-in-depth/
-#
-# If you're having trouble with your keybindings not working, try the
-# Keybinding Resolver: `Cmd+.` on macOS and `Ctrl+.` on other platforms. See the
-# Debugging Guide for more information:
-# * http://flight-manual.atom.io/hacking-atom/sections/debugging/#check-the-keybindings
-#
-# This file uses CoffeeScript Object Notation (CSON).
-# If you are unfamiliar with CSON, you can read more about it in the
-# Atom Flight Manual:
-# http://flight-manual.atom.io/using-atom/sections/basic-customization/#_cson
-
-'body':
-    'ctrl-i': 'application:new-file'
-
-    'alt-j': 'pane:show-previous-item'
-    'alt-;': 'pane:show-next-item'
-
-    'ctrl-shift-j': 'pane:move-item-left'
-    'ctrl-:': 'pane:move-item-right'
-
-    'ctrl-x up': 'pane:split-up-and-copy-active-item'
-    'ctrl-x down': 'pane:split-down-and-copy-active-item'
-
-    'ctrl-x left': 'pane:split-left-and-copy-active-item'
-    'ctrl-x right': 'pane:split-right-and-copy-active-item'
-
-    'ctrl-/': 'core:undo'
-
-    'ctrl-shift-P': 'core:select-up'
-    'ctrl-shift-N': 'core:select-down'
-
 'atom-text-editor':
-    'tab': 'editor:auto-indent'
 
-    'ctrl-h': 'core:select-all'
-
-    'ctrl-a': 'editor:move-to-beginning-of-line'
-    'ctrl-shift-A': 'editor:select-to-beginning-of-line'
     'ctrl-e': 'editor:move-to-end-of-line'
-    'ctrl-shift-E': 'editor:select-to-end-of-line'
+    'ctrl-a': 'editor:move-to-first-character-of-line'
 
-    'ctrl-o': 'fuzzy-finder:toggle-file-finder'
+    'ctrl-alt-e': 'editor:select-to-end-of-line'
+    'ctrl-alt-a': 'editor:select-to-begining-of-line'
 
     'ctrl-p': 'core:move-up'
-    'ctrl-alt-p': 'editor:move-to-beginning-of-previous-paragraph'
-
     'ctrl-n': 'core:move-down'
-    'ctrl-alt-n': 'editor:move-to-beginning-of-next-paragraph'
+
+    'ctrl-alt-p': 'core:select-up'
+    'ctrl-alt-n': 'core:select-down'
 
     'ctrl-j': 'core:move-left'
-    'ctrl-alt-j': 'editor:move-to-beginning-of-word'
-
     'ctrl-;': 'core:move-right'
-    'ctrl-alt-;': 'editor:move-to-end-of-word'
 
-    'ctrl-d': 'core:delete'
-    'ctrl-k ctrl-k': 'editor:cut-to-end-of-line'
+    'alt-j': 'core:select-left'
+    'alt-;': 'core:select-right'
 
-    'ctrl-k ;': 'pane:split-right-and-copy-active-item'
-    'ctrl-k j': 'pane:split-left-and-copy-active-item'
+    'ctrl-alt-j': 'editor:select-to-beginning-of-word'
+    'ctrl-alt-;': 'editor:select-to-end-of-word'
 
-    'ctrl-k ctrl-;': 'window:focus-pane-on-right'
-    'ctrl-k ctrl-j': 'window:focus-pane-on-left'
+    'alt-f2': 'bookmarks:toggle-bookmark'
 
-    'ctrl-y': 'core:paste'
-    'ctrl-/': 'core:undo'
+'.platform-linux atom-text-editor':
 
-    'alt-x': 'command-palette:toggle'
+    'ctrl-J': 'editor:move-to-previous-subword-boundary'
+    'ctrl-:': 'editor:move-to-next-subword-boundary'

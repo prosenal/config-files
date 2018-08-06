@@ -1,0 +1,19 @@
+"*":
+  "autocomplete-python":
+    useKite: false
+  core:
+    audioBeep: false
+    disabledPackages: [
+      "tabs"
+    ]
+    projectHome: "/home/alex/Code"
+    telemetryConsent: "no"
+  editor:
+    fontSize: 16
+    showIndentGuide: true
+    showInvisibles: true
+    tabLength: 4
+  "exception-reporting":
+    userId: "5d9a8873-b4a4-46d5-accd-de3b3107fe7b"
+  welcome:
+    showOnStartup: false
