@@ -4,6 +4,7 @@ export EDITOR=emacs
 
 export JAVA_HOME="/usr/lib/jvm/default"
 
+function gdb() {/usr/bin/gdb -q $@}
 function gitg() {/usr/bin/gitg $@ &}
 function emacs() {/usr/bin/emacs $@ &}
 function evince() {/usr/bin/evince $@ &}
@@ -15,7 +16,7 @@ export NVM_DIR="$HOME/Code/nvm"
 # Starting pyenv, as per:
 # https://github.com/pyenv/pyenv#basic-github-checkout
 export PYENV_ROOT="$HOME/Code/pyenv"
-path=($PYENV_ROOT/bin $path[@])
+path=($PYENV_ROOT/bin /usr/share/java $path[@])
 eval "$(pyenv init -)"
 
 # Starting pyenv-vitrualenv, as per:
