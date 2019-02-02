@@ -1,4 +1,5 @@
 rofi.combi-modi: window,drun,ssh
 rofi.theme: solarized
-rofi.font: Inconsolata LGC for Powerline 20
+rofi.width: 1500
+rofi.font: FontAwesome, Inconsolata LGC for Powerline 18
 rofi.modi: combi
