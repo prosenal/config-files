@@ -4,9 +4,6 @@
 ;; C-h f to describe function
 
 ;; (add-to-list 'custom-theme-load-path
-;;              "~/.emacs.d/elpa/atom-one-dark-theme-20170117.1905")
-
-;; (add-to-list 'custom-theme-load-path
 ;;              "~/.emacs.d/elpa/afternoon-theme-20140104.1059")
 
 ;; (add-to-list 'custom-theme-load-path
@@ -18,9 +15,11 @@
 ;; (add-to-list 'custom-theme-load-path
 ;;              "~/.emacs.d/elpa/monokai-theme-20170314.1612/")
 
-(add-to-list 'custom-theme-load-path "~/.emacs.d/elpa/monokai-theme-20180402.221")
+;; (add-to-list 'custom-theme-load-path "~/.emacs.d/elpa/monokai-theme-20180402.221")
 
-(load-theme 'monokai t)
+(add-to-list 'custom-theme-load-path "~/.emacs.d/elpa/atom-one-dark-theme-20180607.1638")
+
+(load-theme 'atom-one-dark t)
 
 (show-paren-mode t)
 (scroll-bar-mode -1)
@@ -36,7 +35,7 @@
 
 (setq-default indent-tabs-mode nil)
 
-(set-default-font "Inconsolata LGC for Powerline 12")
+(set-default-font "Inconsolata LGC for Powerline 10")
 
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
@@ -47,90 +46,46 @@
 (global-set-key (kbd "C-x C-f") #'helm-find-files)
 (helm-mode 1)
 
-(yas-global-mode 1)
-
-(require 'flycheck)
-
-(require 'js2-mode)
-(add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
-;; suppress js2-mode check (workaround)
-(setq js2-strict-missing-semi-warning nil)
-;; use flycheck-mode (javascript-eslint by default) to check style
-(add-hook 'js2-mode-hook 'flycheck-mode)
-
-(require 'json-mode)
-(add-to-list 'auto-mode-alist '("\\.json" . json-mode))
-(add-hook 'json-mode-hook 'flycheck-mode)
-
 ;; c-mode
 (setq c-default-style "linux")
 (setq-default c-basic-offset 4)
-(c-set-offset 'substatement-open '0) ;; brackets at same indentation as the statements they open
+;; brackets at same indentation as the statements they open
+(c-set-offset 'substatement-open '0)
 ;; (add-hook 'c-mode-hook 'whitespace-mode)
 
 ;; c++-mode
 ;; (add-hook 'c-mode-hook 'company-mode)
 ;; (add-hook 'c++-mode-hook 'whitespace-mode)
 
-;; python-mode
-(add-hook 'python-mode-hook 'jedi:setup)
+;; Configure indent in XML files to be 4 spaces
+;; See: https://emacs.stackexchange.com/questions/24371/how-to-set-indent-to-4-spaces-in-nxml-mode
+(setq nxml-child-indent 4 nxml-attribute-indent 4)
 
-;; auto-complete mode
-(ac-config-default)
-(add-to-list 'ac-modes 'c-mode)
-(add-to-list 'ac-modes 'c++-mode)
+;; Configure markdown mode
+(require 'use-package)
+(use-package markdown-mode
+  :ensure t
+  :commands (markdown-mode gfm-mode)
+  :mode (("README\\.md\\'" . gfm-mode)
+         ("\\.md\\'" . markdown-mode)
+         ("\\.markdown\\'" . markdown-mode))
+  :init (setq markdown-command "multimarkdown"))
 
-;; web-mode
-(require 'web-mode)
-(add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.tpl\\.php\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.[agj]sp\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.as[cp]x\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
+;; ;; python-mode
+;; (add-hook 'python-mode-hook 'jedi:setup)
 
-(add-to-list 'web-mode-engines-alist '("django" . "\\.html\\'"))
-(setq web-mode-enable-auto-closing t)
-(setq web-mode-enable-auto-pairing t)
-
-;; customize org-mode
-(setq org-todo-keywords '((sequence "TODO(t)" "|" "DONE(d!)" "SKIP(s!)")))
-(setq org-habit-graph-column 100)
-
-;; configure gradle-mode
-(require 'gradle-mode)
-
-(gradle-mode 1)
-
-;; configure nxml mode
-(require 'nxml-mode)
-
-(setq-default nxml-child-indent 4)
-
-;; Enable syntax highlighting for Dockerfiles
-(add-to-list 'load-path "/your/path/to/dockerfile-mode/")
-(require 'dockerfile-mode)
-(add-to-list 'auto-mode-alist '("Dockerfile\\'" . dockerfile-mode))
-
+;; ;; auto-complete mode
+;; (ac-config-default)
+;; (add-to-list 'ac-modes 'c-mode)
+;; (add-to-list 'ac-modes 'c++-mode)
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(custom-safe-themes
-   (quote
-    ("8ed752276957903a270c797c4ab52931199806ccd9f0c3bb77f6f4b9e71b9272" default)))
- '(org-agenda-files (quote ("~/Dropbox/Documents/Orgzly/daylog.org")))
- '(org-modules
-   (quote
-    (org-bbdb org-bibtex org-docview org-gnus org-habit org-info org-irc org-mhe org-rmail org-w3m)))
- '(org-support-shift-select nil)
  '(package-selected-packages
    (quote
-    (dockerfile-mode docker-compose-mode typescript-mode gradle-mode auto-org-md yaml-mode haskell-mode darkokai-theme monokai-alt-theme monokai-theme afternoon-theme yasnippet web-mode json-mode js2-mode jedi helm flycheck company atom-one-dark-theme)))
- '(safe-local-variable-values (quote ((js2-basic-offset . 2)))))
+    (dockerfile-mode markdown-mode+ rust-mode systemd yaml-mode org matlab-mode json-mode jedi helm haskell-mode flycheck company atom-one-dark-theme))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
