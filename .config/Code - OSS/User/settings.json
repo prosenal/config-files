@@ -1,0 +1,7 @@
+{
+    "editor.minimap.enabled": false,
+    "editor.renderWhitespace": "all",
+    "workbench.editor.showTabs": false,
+    "workbench.editor.enablePreview": false,
+    "explorer.openEditors.visible": 0
+}
