@@ -1,0 +1,73 @@
+// Place your key bindings in this file to override the defaultsauto[]
+[
+    {
+        "key": "alt+;",
+        "command": "cursorRight",
+        "when": "textInputFocus"
+    },
+    {
+        "key": "shift+alt+;",
+        "command": "cursorRightSelect",
+        "when": "textInputFocus"
+    },
+    {
+        "key": "ctrl+;",
+        "command": "cursorWordEndRight",
+        "when": "textInputFocus"
+    },
+    {
+        "key": "ctrl+shift+;",
+        "command": "cursorWordEndRightSelect",
+        "when": "textInputFocus"
+    },
+    {
+        "key": "alt+j",
+        "command": "cursorLeft",
+        "when": "textInputFocus"
+    },
+    {
+        "key": "shift+alt+j",
+        "command": "cursorLeftSelect",
+        "when": "textInputFocus"
+    },
+    {
+        "key": "ctrl+j",
+        "command": "cursorWordStartLeft",
+        "when": "textInputFocus"
+    },
+    {
+        "key": "ctrl+shift+j",
+        "command": "cursorWordStartLeftSelect",
+        "when": "textInputFocus"
+    },
+    {
+        "key": "alt+n",
+        "command": "cursorDown",
+        "when": "textInputFocus"
+    },
+    {
+        "key": "shift+alt+n",
+        "command": "cursorDownSelect",
+        "when": "textInputFocus"
+    },
+    {
+        "key": "alt+p",
+        "command": "cursorUp",
+        "when": "textInputFocus"
+    },
+    {
+        "key": "shift+alt+p",
+        "command": "cursorUpSelect",
+        "when": "textInputFocus"
+    },
+    {
+        "key": "ctrl+alt+;",
+        "command": "cursorEnd",
+        "when": "textInputFocus"
+    },
+    {
+        "key": "ctrl+alt+j",
+        "command": "cursorHome",
+        "when": "textInputFocus"
+    }
+]
