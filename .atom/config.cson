@@ -1,6 +1,7 @@
 "*":
   core:
     audioBeep: false
+    autoHideMenuBar: true
     projectHome: "/home/alex/Code"
     telemetryConsent: "no"
   editor:
