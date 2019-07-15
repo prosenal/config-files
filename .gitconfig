@@ -1,5 +1,6 @@
 [user]
-	email = all3fox@gmail.com
-	name = Alexander Lisianoi
+	name = Aleksandr Lisianoi
+	email = alisianoi@protonmail.com
+        signingkey = F7B166D3916AA810        
 [core]
 	editor = emacs
