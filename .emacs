@@ -6,25 +6,11 @@
 ;;;   C-h f to describe function
 ;;; Code:
 
-;; ;; Set a theme:
-;;
-;; (add-to-list 'custom-theme-load-path
-;;              "~/.emacs.d/elpa/afternoon-theme-20140104.1059")
-;; (add-to-list 'custom-theme-load-path
-;;              "~/.emacs.d/elpa/darkokai-theme-20160803.2058/")
-;; (add-to-list 'custom-theme-load-path
-;;              "~/.emacs.d/elpa/monokai-alt-theme-20170325.1430/")
-;; (add-to-list 'custom-theme-load-path
-;;              "~/.emacs.d/elpa/monokai-theme-20170314.1612/")
-;; (add-to-list 'custom-theme-load-path
-;;              "~/.emacs.d/elpa/monokai-theme-20180402.221")
-
-
-(add-to-list 'custom-theme-load-path
-             "~/.emacs.d/elpa/atom-one-dark-theme-20190705.554")
-
-(load-theme 'atom-one-dark t)
-
+;;; Set a theme:
+;;; Do M-x customize-theme to see what's available
+;;; When downloading themese from MELPA, just dump the directory
+;;; contents into the custom-theme-load-path directory:
+(add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
 
 (scroll-bar-mode -1)
 (column-number-mode t)
@@ -101,9 +87,13 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(custom-enabled-themes (quote (darkokai)))
+ '(custom-safe-themes
+   (quote
+    ("37ba833442e0c5155a46df21446cadbe623440ccb6bbd61382eb869a2b9e9bf9" default)))
  '(package-selected-packages
    (quote
-    (magit racer flycheck-rust use-package rtags dockerfile-mode markdown-mode+ rust-mode systemd yaml-mode org matlab-mode json-mode jedi helm haskell-mode flycheck company atom-one-dark-theme))))
+    (darkokai-theme magit racer flycheck-rust use-package rtags dockerfile-mode markdown-mode+ rust-mode systemd yaml-mode org matlab-mode json-mode jedi helm haskell-mode flycheck company atom-one-dark-theme))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
