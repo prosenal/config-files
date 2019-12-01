@@ -93,7 +93,7 @@
     ("37ba833442e0c5155a46df21446cadbe623440ccb6bbd61382eb869a2b9e9bf9" default)))
  '(package-selected-packages
    (quote
-    (darkokai-theme magit racer flycheck-rust use-package rtags dockerfile-mode markdown-mode+ rust-mode systemd yaml-mode org matlab-mode json-mode jedi helm haskell-mode flycheck company atom-one-dark-theme))))
+    (darkokai-theme sqlformat sqlup-mode magit racer flycheck-rust use-package rtags dockerfile-mode markdown-mode+ rust-mode systemd yaml-mode org matlab-mode json-mode jedi helm haskell-mode flycheck company atom-one-dark-theme))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

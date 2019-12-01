@@ -15,10 +15,25 @@ export NVM_DIR="$HOME/Code/nvm"
 
 # Starting pyenv, as per:
 # https://github.com/pyenv/pyenv#basic-github-checkout
-export PYENV_ROOT="$HOME/Code/pyenv"
-path=($PYENV_ROOT/bin /usr/share/java $path[@])
+export PYENV_ROOT="/home/alex/Code/pyenv"
+path=($PYENV_ROOT/bin $path[@])
 eval "$(pyenv init -)"
 
 # Starting pyenv-vitrualenv, as per:
 # https://github.com/pyenv/pyenv-virtualenv#installing-as-a-pyenv-plugin
 eval "$(pyenv virtualenv-init -)"
+
+# This is for /Code/qt5, taken from:
+# https://wiki.qt.io/Building_Qt_5_from_Git#Configuring_and_Building
+export LLVM_INSTALL_DIR=/usr/include/llvm
+
+# Let pinentry (gpg) ask me for my gpg password when I do `git commit`
+export GPG_TTY=$(tty)
+
+# This is for Rust, taken from
+# https://wiki.archlinux.org/index.php/Rust#Upstream_installation_script
+path=("/home/alex/.cargo/bin" $path[@])
+
+# This is for gPodder home directory, taken from
+# https://gpodder.github.io/docs/user-manual.html#changing-the-downloads-folder-location-and-the-gpodder-home-folder
+export GPODDER_HOME=/data-hdd/data-alex/gPodder
