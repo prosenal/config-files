@@ -30,7 +30,14 @@
 
 (when window-system (tool-bar-mode 0))
 
+;; Never indent with tabs
 (setq-default indent-tabs-mode nil)
+;; Use XX characters as the default width of a paragraph
+;; http://johnlaudun.org/20080321-word-wrap-filling-in-emacs/
+(setq-default fill-column 77)
+;; When re-formatting a paragraph, do not put two spaces after the dot:
+;; https://www.gnu.org/software/emacs/manual/html_node/emacs/Fill-Commands.html
+(setq-default sentence-end-double-space nil)
 
 (set-frame-font "Inconsolata LGC for Powerline 10")
 
@@ -82,6 +89,9 @@
 ;;; Configure company for Rust
 (define-key rust-mode-map (kbd "TAB") #'company-indent-or-complete-common)
 
+;;; Configure isort for Python
+(add-hook 'before-save-hook 'py-isort-before-save)
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -93,7 +103,7 @@
     ("37ba833442e0c5155a46df21446cadbe623440ccb6bbd61382eb869a2b9e9bf9" default)))
  '(package-selected-packages
    (quote
-    (darkokai-theme sqlformat sqlup-mode magit racer flycheck-rust use-package rtags dockerfile-mode markdown-mode+ rust-mode systemd yaml-mode org matlab-mode json-mode jedi helm haskell-mode flycheck company atom-one-dark-theme))))
+    (py-isort python-black elpy company-racer darkokai-theme magit racer flycheck-rust use-package rtags dockerfile-mode markdown-mode+ systemd yaml-mode org matlab-mode json-mode jedi helm haskell-mode flycheck company atom-one-dark-theme))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
