@@ -1,3 +1,12 @@
+# Follow XDG Base Directory specification
+# See: https://wiki.archlinux.org/index.php/XDG_Base_Directory
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_CACHE_HOME="$HOME/.cache"
+
+# Make certain application (evince, gitg, etc.) use dark mode by default.
+# Works even if you start the application from rofi
+export GTK_THEME=Adwaita:dark
+
 # Start nvm, as per package instructions
 [ -z "$NVM_DIR" ] && export NVM_DIR="$HOME/.nvm"
 source /usr/share/nvm/nvm.sh
