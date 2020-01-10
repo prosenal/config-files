@@ -1,6 +1,6 @@
 ;;; package --- Summary
 ;;; Commentary:
-;;;   My .emacs file, 2019
+;;;   My .emacs file, 2020
 ;;;   C-h ? for help
 ;;;   C-h v to describe variable
 ;;;   C-h f to describe function
@@ -72,10 +72,13 @@
 (add-hook 'racer-mode-hook #'eldoc-mode)
 (add-hook 'racer-mode-hook #'company-mode)
 
+;;; Configure isort for Python
+(add-hook 'before-save-hook 'py-isort-before-save)
+
 ;;; flycheck-mode
 (require 'flycheck)
-;;; Enable flycheck everywhere
-;;; See https://www.flycheck.org/en/latest/user/quickstart.html#enable-flycheck
+;;; Enable flycheck everywhere, see:
+;;; https://www.flycheck.org/en/latest/user/quickstart.html#enable-flycheck
 (add-hook 'after-init-hook #'global-flycheck-mode)
 
 ;;; Configure flycheck for Rust
@@ -88,25 +91,3 @@
 (setq company-tooltip-align-annotations nil)
 ;;; Configure company for Rust
 (define-key rust-mode-map (kbd "TAB") #'company-indent-or-complete-common)
-
-;;; Configure isort for Python
-(add-hook 'before-save-hook 'py-isort-before-save)
-
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(custom-enabled-themes (quote (darkokai)))
- '(custom-safe-themes
-   (quote
-    ("37ba833442e0c5155a46df21446cadbe623440ccb6bbd61382eb869a2b9e9bf9" default)))
- '(package-selected-packages
-   (quote
-    (py-isort python-black elpy company-racer darkokai-theme magit racer flycheck-rust use-package rtags dockerfile-mode markdown-mode+ systemd yaml-mode org matlab-mode json-mode jedi helm haskell-mode flycheck company atom-one-dark-theme))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
