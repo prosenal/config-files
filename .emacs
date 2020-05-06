@@ -12,6 +12,8 @@
 ;;; contents into the custom-theme-load-path directory:
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
 
+(menu-bar-mode -1)
+;; takes 100ms
 (scroll-bar-mode -1)
 (column-number-mode t)
 (electric-pair-mode t)
@@ -28,6 +30,7 @@
 ;;; 3. Prevent the font from "jumping around" slightly:
 (set-face-attribute 'show-paren-match nil :weight 'normal)
 
+;; takes 50ms
 (when window-system (tool-bar-mode 0))
 
 ;; Never indent with tabs
@@ -35,7 +38,7 @@
 ;; Use XX characters as the default width of a paragraph
 ;; http://johnlaudun.org/20080321-word-wrap-filling-in-emacs/
 (setq-default fill-column 77)
-;; When re-formatting a paragraph, do not put two spaces after the dot:
+;; When re-formatting a paragraph, do *not* put two spaces after the dot:
 ;; https://www.gnu.org/software/emacs/manual/html_node/emacs/Fill-Commands.html
 (setq-default sentence-end-double-space nil)
 
