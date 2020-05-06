@@ -74,6 +74,7 @@
 (add-hook 'rust-mode-hook #'racer-mode)
 (add-hook 'racer-mode-hook #'eldoc-mode)
 (add-hook 'racer-mode-hook #'company-mode)
+(setq rust-format-on-save t)
 
 ;;; Configure isort for Python
 (add-hook 'before-save-hook 'py-isort-before-save)
