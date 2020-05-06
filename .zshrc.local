@@ -6,7 +6,7 @@ export JAVA_HOME="/usr/lib/jvm/default"
 
 function gdb() {/usr/bin/gdb -q $@}
 function gitg() {/usr/bin/gitg $@ &}
-function emacs() {/usr/bin/emacs $@ &}
+function emacs() {/usr/bin/emacs -nw $@}
 function evince() {/usr/bin/evince $@ &}
 function i3lock() {/usr/bin/i3lock -c "#000000" $@}
 
