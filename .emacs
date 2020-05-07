@@ -6,10 +6,10 @@
 ;;;   C-h f to describe function
 ;;; Code:
 
-;;; Set a theme:
-;;; Do M-x customize-theme to see what's available
-;;; When downloading themese from MELPA, just dump the directory
-;;; contents into the custom-theme-load-path directory:
+;; Set a theme:
+;; Do M-x customize-theme to see what's available
+;; When downloading themese from MELPA, just dump the directory
+;; contents into the custom-theme-load-path directory:
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
 
 (menu-bar-mode -1)
@@ -23,11 +23,11 @@
 (setq auto-save-default nil)
 (setq inhibit-splash-screen t)
 
-;;; Configure show parenthesis mode
+;; Configure show parenthesis mode
 (show-paren-mode t)
-;;; ;;;  2. Prevent parenthesis from being underlined:
-;;; (set-face-attribute 'show-paren-match nil :underline nil)
-;;; 3. Prevent the font from "jumping around" slightly:
+;;  2. Prevent parenthesis from being underlined:
+(set-face-attribute 'show-paren-match nil :underline nil)
+;; 3. Prevent the font from "jumping around" slightly:
 (set-face-attribute 'show-paren-match nil :weight 'normal)
 
 ;; takes 50ms
@@ -35,23 +35,30 @@
 
 ;; Never indent with tabs
 (setq-default indent-tabs-mode nil)
-;; Use XX characters as the default width of a paragraph
+;; Use XX characters as the default width of a paragraph:
+;; https://www.emacswiki.org/emacs/FillParagraph
 ;; http://johnlaudun.org/20080321-word-wrap-filling-in-emacs/
 (setq-default fill-column 77)
-;; When re-formatting a paragraph, do *not* put two spaces after the dot:
-;; https://www.gnu.org/software/emacs/manual/html_node/emacs/Fill-Commands.html
+;; When re-formatting a paragraph, do not put two spaces after the dot:
+;; https://www.emacswiki.org/emacs/Sentences
 (setq-default sentence-end-double-space nil)
 
 (set-frame-font "Inconsolata LGC for Powerline 10")
 
+;; Common package management configuration:
+;; https://www.emacswiki.org/emacs/InstallingPackages
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
+;; Package initialization is part of the common package management steps.
+;; Without it, subsequent calls to `require' will fail for different packages
+;; It is not well documented, but relevant pointers would include:
+;; https://github.com/melpa/melpa#usage
+;; https://github.com/emacs-helm/helm/issues/744
 (package-initialize)
-
-(require 'use-package)
 
 (require 'helm-config)
 (global-set-key (kbd "M-x") #'helm-M-x)
+(global-set-key (kbd "C-x b") #'helm-mini)
 (global-set-key (kbd "C-x C-f") #'helm-find-files)
 (helm-mode 1)
 
@@ -76,6 +83,8 @@
 (add-hook 'racer-mode-hook #'company-mode)
 (setq rust-format-on-save t)
 
+;; py-isort
+(require 'py-isort)
 ;;; Configure isort for Python
 (add-hook 'before-save-hook 'py-isort-before-save)
 
