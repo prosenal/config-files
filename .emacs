@@ -81,12 +81,17 @@
 (add-hook 'rust-mode-hook #'racer-mode)
 (add-hook 'racer-mode-hook #'eldoc-mode)
 (add-hook 'racer-mode-hook #'company-mode)
+(add-hook 'rust-mode-hook #'lsp)
 (setq rust-format-on-save t)
+;;; Configure company for Rust
+(define-key rust-mode-map (kbd "TAB") #'company-indent-or-complete-common)
 
 ;; py-isort
 (require 'py-isort)
-;;; Configure isort for Python
+;; Configure isort for Python
 (add-hook 'before-save-hook 'py-isort-before-save)
+;; Configure LSP for python
+(add-hook 'python-mode-hook #'lsp)
 
 ;;; flycheck-mode
 (require 'flycheck)
@@ -102,5 +107,5 @@
 ;;; company-mode (aka COMplete ANYthing mode)
 (require 'company)
 (setq company-tooltip-align-annotations nil)
-;;; Configure company for Rust
-(define-key rust-mode-map (kbd "TAB") #'company-indent-or-complete-common)
+
+(require 'lsp-mode)
