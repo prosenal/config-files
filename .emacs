@@ -45,6 +45,9 @@
 
 (set-frame-font "Inconsolata LGC for Powerline 10")
 
+;; Increase garbage collection threshold to 20MiB
+(setq gc-cons-threshold 20971520)
+
 ;; Common package management configuration:
 ;; https://www.emacswiki.org/emacs/InstallingPackages
 (require 'package)
