@@ -79,14 +79,14 @@
 
 ;; rust-mode
 (require 'rust-mode)
-;; racer (autocompletion for rust)
+;; racer (Rust Auto-Complete-ER)
 ;; See https://github.com/racer-rust/emacs-racer#installation
 (add-hook 'rust-mode-hook #'racer-mode)
 (add-hook 'racer-mode-hook #'eldoc-mode)
 (add-hook 'racer-mode-hook #'company-mode)
 (add-hook 'rust-mode-hook #'lsp)
 (setq rust-format-on-save t)
-;;; Configure company for Rust
+;; Configure company for Rust
 (define-key rust-mode-map (kbd "TAB") #'company-indent-or-complete-common)
 
 ;; py-isort
@@ -107,8 +107,15 @@
 (with-eval-after-load 'rust-mode
   (add-hook 'flycheck-mode-hook #'flycheck-rust-setup))
 
-;;; company-mode (aka COMplete ANYthing mode)
+;;; company-mode (COMplete ANYthing mode)
 (require 'company)
 (setq company-tooltip-align-annotations nil)
 
+;;; Language Server Protocol mode
 (require 'lsp-mode)
+
+;;; Separate Edit mode
+;; https://github.com/twlz0ne/separedit.el#installation
+(require 'separedit)
+(define-key prog-mode-map (kbd "C-c C-e") #'separedit)
+(setq separedit-default-mode 'markdown-mode) ;; or org-mode
