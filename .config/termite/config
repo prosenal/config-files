@@ -1,5 +1,5 @@
 [options]
-font = Inconsolata LGC for Powerline 10
+font = Inconsolata LGC 10
 scrollback_lines = 16192
 cell_height_scale = 1.025
 

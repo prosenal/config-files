@@ -1,5 +1,5 @@
 rofi.combi-modi: window,drun,ssh
 rofi.theme: gruvbox-dark-hard
 rofi.width: 1500
-rofi.font: FontAwesome, Inconsolata LGC for Powerline 18
+rofi.font: FontAwesome, Inconsolata LGC 18
 rofi.modi: combi

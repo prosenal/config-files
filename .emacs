@@ -43,7 +43,7 @@
 ;; https://www.emacswiki.org/emacs/Sentences
 (setq-default sentence-end-double-space nil)
 
-(set-frame-font "Inconsolata LGC for Powerline 10")
+(set-frame-font "Inconsolata LGC 10")
 
 ;; Increase garbage collection threshold to 20MiB
 (setq gc-cons-threshold 20971520)
