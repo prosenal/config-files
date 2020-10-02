@@ -114,6 +114,9 @@
 
 ;;; Configure magit
 (require 'magit)
+;; See https://magit.vc/manual/magit/Getting-Started.html#Getting-Started
+(global-set-key (kbd "C-x g") 'magit-status)
+(global-set-key (kbd "C-x M-g") 'magit-dispatch)
 
 ;;; flycheck-mode
 (require 'flycheck)
