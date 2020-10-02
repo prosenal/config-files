@@ -1,0 +1,121 @@
+;; CPU fan
+Testing pwm control hwmon4/pwm2 ...
+    It appears that fan hwmon4/fan2_input
+    is controlled by pwm hwmon4/pwm2
+Would you like to generate a detailed correlation (y)? y
+Note: If you had gnuplot installed, I could generate a graphical plot.
+    PWM 255 FAN 1381
+    PWM 240 FAN 1306
+    PWM 225 FAN 1264
+    PWM 210 FAN 1201
+    PWM 195 FAN 1115
+    PWM 180 FAN 1047
+    PWM 165 FAN 984
+    PWM 150 FAN 915
+    PWM 135 FAN 842
+    PWM 120 FAN 746
+    PWM 105 FAN 681
+    PWM 90 FAN 593
+    PWM 75 FAN 503
+    PWM 60 FAN 410
+    PWM 45 FAN 303
+    PWM 30 FAN 209
+    PWM 28 FAN 179
+    PWM 26 FAN 0
+    Fan Stopped at PWM = 26
+
+;; Back fan
+Testing pwm control hwmon4/pwm3 ...
+    It appears that fan hwmon4/fan3_input
+    is controlled by pwm hwmon4/pwm3
+Would you like to generate a detailed correlation (y)? y
+Note: If you had gnuplot installed, I could generate a graphical plot.
+    PWM 255 FAN 1532
+    PWM 240 FAN 1457
+    PWM 225 FAN 1378
+    PWM 210 FAN 1331
+    PWM 195 FAN 1239
+    PWM 180 FAN 1135
+    PWM 165 FAN 1062
+    PWM 150 FAN 996
+    PWM 135 FAN 924
+    PWM 120 FAN 837
+    PWM 105 FAN 748
+    PWM 90 FAN 650
+    PWM 75 FAN 555
+    PWM 60 FAN 461
+    PWM 45 FAN 338
+    PWM 30 FAN 242
+    PWM 28 FAN 208
+    PWM 26 FAN 189
+    PWM 24 FAN 183
+    PWM 22 FAN 184
+    PWM 20 FAN 183
+    PWM 18 FAN 184
+    PWM 16 FAN 183
+    PWM 14 FAN 184
+    PWM 12 FAN 0
+    Fan Stopped at PWM = 12
+
+;; Front top fan
+Testing pwm control hwmon4/pwm4 ...
+    It appears that fan hwmon4/fan4_input
+    is controlled by pwm hwmon4/pwm4
+Would you like to generate a detailed correlation (y)? y
+Note: If you had gnuplot installed, I could generate a graphical plot.
+    PWM 255 FAN 1401
+    PWM 240 FAN 1366
+    PWM 225 FAN 1293
+    PWM 210 FAN 1223
+    PWM 195 FAN 1162
+    PWM 180 FAN 1090
+    PWM 165 FAN 1011
+    PWM 150 FAN 937
+    PWM 135 FAN 875
+    PWM 120 FAN 789
+    PWM 105 FAN 713
+    PWM 90 FAN 619
+    PWM 75 FAN 527
+    PWM 60 FAN 412
+    PWM 45 FAN 327
+    PWM 30 FAN 230
+    PWM 28 FAN 197
+    PWM 26 FAN 174
+    PWM 24 FAN 169
+    PWM 22 FAN 169
+    PWM 20 FAN 169
+    PWM 18 FAN 169
+    PWM 16 FAN 168
+    PWM 14 FAN 168
+    PWM 12 FAN 0
+    Fan Stopped at PWM = 12
+
+;; Front bot fan
+Testing pwm control hwmon4/pwm5 ...
+  hwmon4/fan2_input ... speed was 1380 now 1396
+    no correlation
+  hwmon4/fan3_input ... speed was 1534 now 1481
+    no correlation
+  hwmon4/fan4_input ... speed was 1413 now 1439
+    no correlation
+  hwmon4/fan5_input ... speed was 746 now 0
+    It appears that fan hwmon4/fan5_input
+    is controlled by pwm hwmon4/pwm5
+Would you like to generate a detailed correlation (y)? y
+Note: If you had gnuplot installed, I could generate a graphical plot.
+    PWM 255 FAN 745
+    PWM 240 FAN 742
+    PWM 225 FAN 721
+    PWM 210 FAN 695
+    PWM 195 FAN 675
+    PWM 180 FAN 618
+    PWM 165 FAN 592
+    PWM 150 FAN 554
+    PWM 135 FAN 511
+    PWM 120 FAN 476
+    PWM 105 FAN 420
+    PWM 90 FAN 366
+    PWM 75 FAN 328
+    PWM 60 FAN 256
+    PWM 45 FAN 0
+    Fan Stopped at PWM = 45
