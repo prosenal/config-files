@@ -4,7 +4,7 @@
 ;;;   C-h ? for help
 ;;;   C-h v to describe variable
 ;;;   C-h f to describe function
-;;; If you're rusty on emacs navigation, here is a refresher on bookmarks:
+;;; If you're rusty on Emacs navigation, here is a refresher on bookmarks:
 ;;; https://emacs.stackexchange.com/a/3422/8889
 ;;; Code:
 
