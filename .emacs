@@ -4,6 +4,8 @@
 ;;;   C-h ? for help
 ;;;   C-h v to describe variable
 ;;;   C-h f to describe function
+;;; If you're rusty on emacs navigation, here is a refresher on bookmarks:
+;;; https://emacs.stackexchange.com/a/3422/8889
 ;;; Code:
 
 ;; Set a theme:
@@ -12,6 +14,7 @@
 ;; contents into the custom-theme-load-path directory:
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
 
+;;; Tweak common behaviors and UI elements
 (menu-bar-mode -1)
 ;; takes 100ms
 (scroll-bar-mode -1)
@@ -22,14 +25,19 @@
 (setq make-backup-files nil)
 (setq auto-save-default nil)
 (setq inhibit-splash-screen t)
+;; (setq x-select-enable-primary nil)
+;; (setq x-select-enable-clipboard t)
 
-;; Configure show parenthesis mode
+;;; Tweak the way parenthesis are displayed:
+;; 1. Highlight parenthesis by default
 (show-paren-mode t)
-;;  2. Prevent parenthesis from being underlined:
+;; 2. Prevent parenthesis from being underlined:
 (set-face-attribute 'show-paren-match nil :underline nil)
 ;; 3. Prevent the font from "jumping around" slightly:
 (set-face-attribute 'show-paren-match nil :weight 'normal)
 
+;; Removes the one-pixel borders around emacs window
+(set-fringe-mode 0)
 ;; takes 50ms
 (when window-system (tool-bar-mode 0))
 
@@ -48,7 +56,7 @@
 ;; Increase garbage collection threshold to 20MiB
 (setq gc-cons-threshold 20971520)
 
-;; Common package management configuration:
+;;; Configure package management (this section is very common)
 ;; https://www.emacswiki.org/emacs/InstallingPackages
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
@@ -59,6 +67,7 @@
 ;; https://github.com/emacs-helm/helm/issues/744
 (package-initialize)
 
+;;; Configure helm
 (require 'helm-config)
 (global-set-key (kbd "M-x") #'helm-M-x)
 (global-set-key (kbd "C-x b") #'helm-mini)
@@ -89,12 +98,22 @@
 ;; Configure company for Rust
 (define-key rust-mode-map (kbd "TAB") #'company-indent-or-complete-common)
 
-;; py-isort
+;;; Configure Python
 (require 'py-isort)
+;; Configure LSP for Python
+(add-hook 'python-mode-hook #'lsp)
 ;; Configure isort for Python
 (add-hook 'before-save-hook 'py-isort-before-save)
-;; Configure LSP for python
-(add-hook 'python-mode-hook #'lsp)
+(global-set-key (kbd "C-c b") #'python-black-region)
+
+;;; Configure separedit
+;; https://github.com/twlz0ne/separedit.el#installation
+(require 'separedit)
+(define-key prog-mode-map (kbd "C-c C-e") #'separedit)
+(setq separedit-default-mode 'markdown-mode) ;; or org-mode
+
+;;; Configure magit
+(require 'magit)
 
 ;;; flycheck-mode
 (require 'flycheck)
@@ -113,9 +132,3 @@
 
 ;;; Language Server Protocol mode
 (require 'lsp-mode)
-
-;;; Separate Edit mode
-;; https://github.com/twlz0ne/separedit.el#installation
-(require 'separedit)
-(define-key prog-mode-map (kbd "C-c C-e") #'separedit)
-(setq separedit-default-mode 'markdown-mode) ;; or org-mode
