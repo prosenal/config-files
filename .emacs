@@ -50,6 +50,8 @@
 ;; When re-formatting a paragraph, do not put two spaces after the dot:
 ;; https://www.emacswiki.org/emacs/Sentences
 (setq-default sentence-end-double-space nil)
+;; By default, truncate long lines instead of wrapping them:
+(setq-default truncate-lines t)
 
 (set-frame-font "Inconsolata LGC 10")
 
