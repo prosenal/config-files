@@ -96,6 +96,7 @@
 (add-hook 'racer-mode-hook #'eldoc-mode)
 (add-hook 'racer-mode-hook #'company-mode)
 (add-hook 'rust-mode-hook #'lsp)
+(add-hook 'rust-mode-hook #'hs-minor-mode)
 (setq rust-format-on-save t)
 ;; Configure company for Rust
 (define-key rust-mode-map (kbd "TAB") #'company-indent-or-complete-common)
@@ -119,6 +120,10 @@
 ;; See https://magit.vc/manual/magit/Getting-Started.html#Getting-Started
 (global-set-key (kbd "C-x g") 'magit-status)
 (global-set-key (kbd "C-x M-g") 'magit-dispatch)
+(global-set-key (kbd "C-c g") 'magit-file-dispatch)
+
+;;; Configure hideshow
+(global-set-key (kbd "C-c C-r") 'hs-toggle-hiding)
 
 ;;; flycheck-mode
 (require 'flycheck)
