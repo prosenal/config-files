@@ -1,0 +1,17 @@
+10.8.0.1 bender
+10.8.0.1 bender.home
+10.8.0.1 pi.hole
+10.8.0.1 ns.home
+10.8.0.52 pixel.home
+10.8.0.100 jaqen.home
+10.8.0.104 loki.home
+10.8.0.108 jorah.home
+10.8.0.112 davos.home
+10.8.0.152 theon.home
+10.8.0.200 files.home
+10.8.0.200 syrio.home
+10.8.0.204 aldan.home
+192.168.1.200 files.lan
+192.168.1.200 syrio.lan
+2a03:b0c0:2:d0::398:2001 bender
+2a03:b0c0:2:d0::398:2001 pi.hole
