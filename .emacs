@@ -25,8 +25,12 @@
 (setq make-backup-files nil)
 (setq auto-save-default nil)
 (setq inhibit-splash-screen t)
+
+;;; Enable copy to X11 clipboard in --no-window mode
+;; See: https://stackoverflow.com/a/14659015/1269892
+(xclip-mode 1)
 ;; (setq x-select-enable-primary nil)
-;; (setq x-select-enable-clipboard t)
+;; (setq select-enable-clipboard t)
 
 ;;; Tweak the way parenthesis are displayed:
 ;; 1. Highlight parenthesis by default
