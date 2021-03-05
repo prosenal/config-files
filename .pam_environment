@@ -1,3 +1,9 @@
-# This is required for systemctl --user enable --now sshd-agent.service
-# https://wiki.archlinux.org/index.php/SSH_keys#Start_ssh-agent_with_systemd_user
-SSH_AUTH_SOCK DEFAULT="${XDG_RUNTIME_DIR}/ssh-agent.socket"
+# This is how to use ssh-agent
+# # This is required for systemctl --user enable --now sshd-agent.service
+# # https://wiki.archlinux.org/index.php/SSH_keys#Start_ssh-agent_with_systemd_user
+# SSH_AUTH_SOCK DEFAULT="${XDG_RUNTIME_DIR}/ssh-agent.socket"
+
+# This is how to use gpg-agent
+# # https://wiki.archlinux.org/index.php/GnuPG#Set_SSH_AUTH_SOCK
+SSH_AGENT_PID DEFAULT=
+SSH_AUTH_SOCK DEFAULT="${XDG_RUNTIME_DIR}/gnupg/S.gpg-agent.ssh"
