@@ -16,6 +16,7 @@ export LLVM_INSTALL_DIR=/usr/include/llvm
 
 # Let pinentry (gpg) ask me for my gpg password when I do `git commit`
 export GPG_TTY=$(tty)
+gpg-connect-agent updatestartuptty /bye > /dev/null
 
 # Add Rust to path (similar to sourcing $HOME/.cargo/env)
 # https://wiki.archlinux.org/index.php/Rust#Upstream_installation_script
