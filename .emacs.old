@@ -1,0 +1,232 @@
+;;; Commentary:
+;;;   My .emacs file, 2021
+;;;   C-h ? for help
+;;;   C-h v to describe variable
+;;;   C-h f to describe function (a mode is also a function)
+;;; If you're rusty on Emacs navigation, here is a refresher on bookmarks:
+;;; https://emacs.stackexchange.com/a/3422/8889
+
+;;; Set a theme:
+;; Do M-x customize-theme to see what's available
+;; When downloading themese from MELPA, just dump the directory
+;; contents into the custom-theme-load-path directory:
+(add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
+
+;;; Tweak common behaviors and UI elements
+(menu-bar-mode -1)
+;; takes 100ms
+(scroll-bar-mode -1)
+(column-number-mode t)
+(electric-pair-mode t)
+
+(setq visible-bell t)
+(setq make-backup-files nil)
+(setq auto-save-default nil)
+(setq inhibit-splash-screen t)
+
+;;; Enable copy to X11 clipboard in --no-window mode
+;; See: https://stackoverflow.com/a/14659015/1269892
+(xclip-mode 1)
+;; (setq x-select-enable-primary nil)
+;; (setq select-enable-clipboard t)
+
+;;; Tweak the way parenthesis are displayed:
+;; 1. Highlight parenthesis by default
+(show-paren-mode t)
+;; 2. Prevent parenthesis from being underlined:
+(set-face-attribute 'show-paren-match nil :underline nil)
+;; 3. Prevent the font from "jumping around" slightly:
+(set-face-attribute 'show-paren-match nil :weight 'normal)
+
+;; Removes the one-pixel borders around emacs window
+(set-fringe-mode 0)
+;; takes 50ms
+(when window-system (tool-bar-mode 0))
+
+;; Never indent with tabs
+(setq-default indent-tabs-mode nil)
+;; Use XX characters as the default width of a paragraph:
+;; https://www.emacswiki.org/emacs/FillParagraph
+;; http://johnlaudun.org/20080321-word-wrap-filling-in-emacs/
+(setq-default fill-column 77)
+;; When re-formatting a paragraph, do not put two spaces after the dot:
+;; https://www.emacswiki.org/emacs/Sentences
+(setq-default sentence-end-double-space nil)
+;; By default, truncate long lines instead of wrapping them:
+(setq-default truncate-lines t)
+
+(set-frame-font "Inconsolata LGC 10")
+
+;; Increase garbage collection threshold to 20MiB
+(setq gc-cons-threshold 20971520)
+
+;;; Configure package management (this section is very common)
+;; https://www.emacswiki.org/emacs/InstallingPackages
+(require 'package)
+(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
+;; Package initialization is part of the common package management steps.
+;; Without it, subsequent calls to `require' will fail for different packages
+;; It is not well documented, but relevant pointers would include:
+;; https://github.com/melpa/melpa#usage
+;; https://github.com/emacs-helm/helm/issues/744
+(package-initialize)
+
+;;; Configure helm
+(require 'helm-config)
+(global-set-key (kbd "M-x") #'helm-M-x)
+(global-set-key (kbd "C-x b") #'helm-mini)
+(global-set-key (kbd "C-x C-f") #'helm-find-files)
+(helm-mode 1)
+
+;; c-mode
+(require 'cc-vars)
+(setq c-default-style "linux")
+(setq-default c-basic-offset 4)
+;; brackets at same indentation as the statements they open
+(c-set-offset 'substatement-open '0)
+(add-hook 'c-mode-hook #'company-mode)
+;; (add-hook 'c-mode-hook 'whitespace-mode)
+
+;; c++-mode
+(add-hook 'c++-mode-hook #'company-mode)
+
+;; rust-mode
+(require 'rust-mode)
+;; racer (Rust Auto-Complete-ER)
+;; See https://github.com/racer-rust/emacs-racer#installation
+(add-hook 'rust-mode-hook #'racer-mode)
+(add-hook 'racer-mode-hook #'eldoc-mode)
+(add-hook 'racer-mode-hook #'company-mode)
+(add-hook 'rust-mode-hook #'lsp)
+(add-hook 'rust-mode-hook #'hs-minor-mode)
+(setq rust-format-on-save t)
+;; Configure company for Rust
+(define-key rust-mode-map (kbd "TAB") #'company-indent-or-complete-common)
+
+;;; Configure Python
+(require 'py-isort)
+;; Configure LSP for Python
+(add-hook 'python-mode-hook #'lsp)
+;; Configure isort for Python
+(add-hook 'before-save-hook 'py-isort-before-save)
+(global-set-key (kbd "C-c b") #'python-black-region)
+
+;;; Configure separedit
+;; https://github.com/twlz0ne/separedit.el#installation
+(require 'separedit)
+(define-key prog-mode-map (kbd "C-c C-e") #'separedit)
+(setq separedit-default-mode 'markdown-mode) ;; or org-mode
+
+;;; Configure magit
+(require 'magit)
+;; See https://magit.vc/manual/magit/Getting-Started.html#Getting-Started
+(global-set-key (kbd "C-x g") 'magit-status)
+(global-set-key (kbd "C-x M-g") 'magit-dispatch)
+(global-set-key (kbd "C-c g") 'magit-file-dispatch)
+
+;;; Configure hideshow
+(global-set-key (kbd "C-c C-r") 'hs-toggle-hiding)
+
+;;; flycheck-mode
+(require 'flycheck)
+;;; Enable flycheck everywhere, see:
+;;; https://www.flycheck.org/en/latest/user/quickstart.html#enable-flycheck
+;;; (add-hook 'after-init-hook #'global-flycheck-mode)
+
+;;; Configure flycheck for Rust
+;;; See https://github.com/flycheck/flycheck-rust
+(with-eval-after-load 'rust-mode
+  (add-hook 'flycheck-mode-hook #'flycheck-rust-setup))
+
+;;; company-mode (COMplete ANYthing mode)
+(require 'company)
+(setq company-tooltip-align-annotations nil)
+
+;;; Language Server Protocol mode
+(require 'lsp-mode)
+;; (use-package lsp-mode
+;;  :commands (lsp lsp-deferred)
+;;  :init
+;;  (setq lsp-keymap-prefix "C-c l")
+;;  :config
+;;  (lsp-enable-which-key-integration t))
+
+;;; web-mode
+(require 'web-mode)
+(add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.tpl\\.php\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.[agj]sp\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.as[cp]x\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
+
+;;; Custom typescript mode
+(require 'typescript-mode)
+(define-derived-mode
+  ts-mode
+  typescript-mode
+  "ts-mode"
+  "Typescript Mode for Javascript")
+(add-to-list
+ 'auto-mode-alist
+ '("\\.ts?\\'" . ts-mode))
+(add-to-list
+ 'lsp-language-id-configuration
+ '(ts-mode . "typescript"))
+
+(defgroup lsp-deno nil
+  "Group for Deno as the Language Server Provider"
+  :group 'lsp-mode
+  :link '(url-link "https://deno.land"))
+(defcustom lsp-clients-deno-server "deno"
+  "The Deno executable to use"
+  :group 'lsp-deno
+  :risky t
+  :type 'file)
+(defcustom lsp-clients-deno-server-args '("lsp")
+  "Extra arguments for the Deno language server"
+  :group 'lsp-deno
+  :risky t
+  :type '(repeat string))
+(defcustom lsp-clients-deno-log-verbosity "info"
+  "Log verbosity for the Deno language server"
+  :group 'lsp-deno
+  :type 'string)
+(defun lsp-clients-deno-activate-p (file-name _mode)
+  "Check if the Deno language server should be enabled for a particular FILE-NAME and MODE."
+  (and
+   (derived-mode-p
+    'js-mode 'web-mode 'js2-mode 'rjsx-mode 'ts-mode)
+   (not (derived-mode-p 'json-mode))))
+(lsp-register-client
+ (make-lsp-client :new-connection
+                  (lsp-stdio-connection (lambda ()
+                                          (cons lsp-clients-deno-server
+                                                lsp-clients-deno-server-args)))
+                  :priority 0
+                  :activation-fn 'lsp-clients-deno-activate-p
+                  :initialization-options '(:enable t)
+                  :server-id 'deno-ls))
+
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(ansi-color-names-vector
+   ["#3c3836" "#fb4933" "#b8bb26" "#fabd2f" "#83a598" "#d3869b" "#8ec07c" "#ebdbb2"])
+ '(custom-enabled-themes '(cyberpunk))
+ '(custom-safe-themes
+   '("939ea070fb0141cd035608b2baabc4bd50d8ecc86af8528df9d41f4d83664c6a" "aded61687237d1dff6325edb492bde536f40b048eab7246c61d5c6643c696b7f" "4cf9ed30ea575fb0ca3cff6ef34b1b87192965245776afa9e9e20c17d115f3fb" "b89a4f5916c29a235d0600ad5a0849b1c50fab16c2c518e1d98f0412367e7f97" default))
+ '(fci-rule-color "#383838")
+ '(org-agenda-files '("~/Documents/org-mode/tt.org"))
+ '(package-selected-packages
+   '(typescript-mode xclip z3-mode yaml-mode web-mode separedit racer python-black py-isort magit helm-lsp gruvbox-theme flycheck-rust cyberpunk-theme company-lsp))
+ '(pdf-view-midnight-colors '("#fdf4c1" . "#282828")))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
