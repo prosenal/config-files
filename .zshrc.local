@@ -10,6 +10,13 @@ function emacs() {/usr/bin/emacs -nw $@}
 function evince() {/usr/bin/evince $@ &}
 function i3lock() {/usr/bin/i3lock -c "#000000" $@}
 
+# Follow instructions for pyenv-installer
+# See: https://github.com/pyenv/pyenv-installer
+export PYENV_ROOT="/home/alex/.pyenv"
+path=($PYENV_ROOT/bin $path[@])
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
+
 # This is for $HOME/Code/qt5, taken from:
 # https://wiki.qt.io/Building_Qt_5_from_Git#Configuring_and_Building
 export LLVM_INSTALL_DIR=/usr/include/llvm

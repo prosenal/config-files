@@ -1,38 +1,24 @@
-;;; package --- Summary
-;;; Commentary:
-;;;   My .emacs file, 2020
-;;;   C-h ? for help
-;;;   C-h v to describe variable
-;;;   C-h f to describe function
-;;; If you're rusty on Emacs navigation, here is a refresher on bookmarks:
-;;; https://emacs.stackexchange.com/a/3422/8889
-;;; Code:
+;;; Configure UI (built-in)
+;; Do *not* show the startup screen
+(setq inhibit-splash-screen t)
+(setq inhibit-startup-screen t)
+(setq inhibit-startup-message t)
 
-;; Set a theme:
-;; Do M-x customize-theme to see what's available
-;; When downloading themese from MELPA, just dump the directory
-;; contents into the custom-theme-load-path directory:
-(add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
-
-;;; Tweak common behaviors and UI elements
-(menu-bar-mode -1)
-;; takes 100ms
-(scroll-bar-mode -1)
-(column-number-mode t)
-(electric-pair-mode t)
-
-(setq visible-bell t)
+;; Do *not* create backups
 (setq make-backup-files nil)
 (setq auto-save-default nil)
-(setq inhibit-splash-screen t)
 
-;;; Enable copy to X11 clipboard in --no-window mode
-;; See: https://stackoverflow.com/a/14659015/1269892
-(xclip-mode 1)
-;; (setq x-select-enable-primary nil)
-;; (setq select-enable-clipboard t)
+;; Do *not* beep at me
+(setq visible-bell t)
 
-;;; Tweak the way parenthesis are displayed:
+;; Do *not* show menus
+(menu-bar-mode -1)
+(scroll-bar-mode -1)
+
+;; Show column numbers in the modeline
+(column-number-mode t)
+
+;; Tweak the way parenthesis are displayed:
 ;; 1. Highlight parenthesis by default
 (show-paren-mode t)
 ;; 2. Prevent parenthesis from being underlined:
@@ -40,10 +26,8 @@
 ;; 3. Prevent the font from "jumping around" slightly:
 (set-face-attribute 'show-paren-match nil :weight 'normal)
 
-;; Removes the one-pixel borders around emacs window
-(set-fringe-mode 0)
-;; takes 50ms
-(when window-system (tool-bar-mode 0))
+;; Automatically add a closing ), }, ], ", '.
+(electric-pair-mode t)
 
 ;; Never indent with tabs
 (setq-default indent-tabs-mode nil)
@@ -57,101 +41,160 @@
 ;; By default, truncate long lines instead of wrapping them:
 (setq-default truncate-lines t)
 
-(set-frame-font "Inconsolata LGC 10")
+;; Choose fonts
+(set-face-attribute
+ 'default nil
+ :family "Fira Code Retina"
+ :weight 'normal
+ :slant 'normal
+ :underline nil)
 
-;; Increase garbage collection threshold to 20MiB
-(setq gc-cons-threshold 20971520)
+(set-face-attribute
+ 'bold-italic nil
+ :family "Fira Code Retina"
+ :weight 'bold
+ :slant 'normal)
 
-;;; Configure package management (this section is very common)
-;; https://www.emacswiki.org/emacs/InstallingPackages
+;; Increase garbage collection threshold:
+(setq gc-cons-threshold 64 * 1024 * 1024)
+
+;;; Configure package management
 (require 'package)
-(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
-;; Package initialization is part of the common package management steps.
-;; Without it, subsequent calls to `require' will fail for different packages
-;; It is not well documented, but relevant pointers would include:
-;; https://github.com/melpa/melpa#usage
-;; https://github.com/emacs-helm/helm/issues/744
+;; Use both community-driven melpa and the built-in elpa package archives:
+(setq package-archives
+ '(("melpa" . "https://melpa.org/packages/")
+   ("elpa" . "https://elpa.gnu.org/packages/")))
+;; Load Emacs Lisp packages, and activate them
 (package-initialize)
+;; Ask package archives for packages if you don't know which are available:
+(unless package-archive-contents
+  (package-refresh-contents))
+;; Use use-package instead of the built-in package mechanism to get packages:
+(unless (package-installed-p 'use-package)
+  (package-install 'use-package))
+(require 'use-package)
+;; If the target package is not installed, always download and install it:
+(setq use-package-always-ensure t)
 
-;;; Configure helm
-(require 'helm-config)
-(global-set-key (kbd "M-x") #'helm-M-x)
-(global-set-key (kbd "C-x b") #'helm-mini)
-(global-set-key (kbd "C-x C-f") #'helm-find-files)
-(helm-mode 1)
+;;; Configure UI (theme)
+(use-package
+  cyberpunk-theme
+  :config (load-theme 'cyberpunk t nil))
 
-;; c-mode
-(require 'cc-vars)
-(setq c-default-style "linux")
-(setq-default c-basic-offset 4)
-;; brackets at same indentation as the statements they open
-(c-set-offset 'substatement-open '0)
-(add-hook 'c-mode-hook #'company-mode)
-;; (add-hook 'c-mode-hook 'whitespace-mode)
+;;; Configure packages
 
-;; c++-mode
-(add-hook 'c++-mode-hook #'company-mode)
+;; Hide some of the minor modes from the modeline
+(use-package diminish)
 
-;; rust-mode
-(require 'rust-mode)
-;; racer (Rust Auto-Complete-ER)
-;; See https://github.com/racer-rust/emacs-racer#installation
-(add-hook 'rust-mode-hook #'racer-mode)
-(add-hook 'racer-mode-hook #'eldoc-mode)
-(add-hook 'racer-mode-hook #'company-mode)
-(add-hook 'rust-mode-hook #'lsp)
-(add-hook 'rust-mode-hook #'hs-minor-mode)
-(setq rust-format-on-save t)
-;; Configure company for Rust
-(define-key rust-mode-map (kbd "TAB") #'company-indent-or-complete-common)
+;; Copy and paste things from the clipboard, everywhere
+(use-package xclip
+  :config
+  (xclip-mode 1))
 
-;;; Configure Python
-(require 'py-isort)
-;; Configure LSP for Python
-(add-hook 'python-mode-hook #'lsp)
-;; Configure isort for Python
-(add-hook 'before-save-hook 'py-isort-before-save)
-(global-set-key (kbd "C-c b") #'python-black-region)
+;; Fuzzy-match for everything
+(use-package helm
+  :bind (("M-x" . helm-M-x)
+         ("C-x b" . helm-mini)
+         ("C-x C-f" . helm-find-files)))
 
-;;; Configure separedit
-;; https://github.com/twlz0ne/separedit.el#installation
-(require 'separedit)
-(define-key prog-mode-map (kbd "C-c C-e") #'separedit)
-(setq separedit-default-mode 'markdown-mode) ;; or org-mode
+;; Show available shortcuts
+(use-package which-key
+  :diminish which-key-mode
+  :defer 1
+  :config
+  (which-key-mode)
+  (setq which-key-idle-delay 0.3))
 
-;;; Configure magit
-(require 'magit)
-;; See https://magit.vc/manual/magit/Getting-Started.html#Getting-Started
-(global-set-key (kbd "C-x g") 'magit-status)
-(global-set-key (kbd "C-x M-g") 'magit-dispatch)
-(global-set-key (kbd "C-c g") 'magit-file-dispatch)
+;; Language Server Protocol
+;; Here are some of the LSP servers that you should be installing:
+;;  1. sudo npm -g install vscode-css-languageserver-bin
+;;  2. sudo npm -g install vscode-html-languageserver-bin
+;;  3. sudo npm -g install vscode-json-languageserver
+;;  4. sudo npm -g install yaml-language-server
+;;  5. sudo npm -g install typescript-language-server
+;;  6. sudo npm -g install @angular/language-server
+;;  7. sudo npm -g install @angular/language-service
 
-;;; Configure hideshow
-(global-set-key (kbd "C-c C-r") 'hs-toggle-hiding)
+(use-package lsp-mode
+  :commands (lsp lsp-deferred)
+  :init
+  (setq lsp-keymap-prefix "C-c l")
+  :config
+  (lsp-enable-which-key-integration t))
 
-;;; flycheck-mode
-(require 'flycheck)
-;;; Enable flycheck everywhere, see:
-;;; https://www.flycheck.org/en/latest/user/quickstart.html#enable-flycheck
-(add-hook 'after-init-hook #'global-flycheck-mode)
+;; Use company mode (aka complete anything)
+(use-package company
+  :after lsp-mode
+  :config
+  (setq company-tooltip-align-annotations t)
+  :diminish company-mode
+  :hook (lsp-mode . company-mode)
+  ;; :bind
+  ;; (:map company-active-map
+  ;;       ("<tab>" . company-complete-selection))
+  ;; (:map lsp-mode-map
+  ;; 	("<tab>" . company-indent-or-complete-common))
+  :custom
+  (company-minimum-prefix-length 1)
+  (company-idle-delay 0.0))
 
-;;; Configure flycheck for Rust
-;;; See https://github.com/flycheck/flycheck-rust
-(with-eval-after-load 'rust-mode
-  (add-hook 'flycheck-mode-hook #'flycheck-rust-setup))
+;; Use flycheck mode (aka complain about everything)
+(use-package flycheck
+  :after lsp-mode)
 
-;;; company-mode (COMplete ANYthing mode)
-(require 'company)
-(setq company-tooltip-align-annotations nil)
+;; Typescript for Language Server Protocol
+(use-package typescript-mode
+  :mode "\\.ts\\'"
+  :hook (typescript-mode . lsp-deferred)
+  :config
+  (setq typescript-indent-level 2))
 
-;;; Language Server Protocol mode
-(require 'lsp-mode)
+;; WebMode for better .html handling
+(use-package web-mode
+  :mode ("\\.css\\'"  ;; Consider using plain CSS mode instead?
+         "\\.erb\\'"
+         "\\.html?\\'"
+         ;; "\\.json\\'"
+         "\\.djhtml\\'"
+         "\\.mustache\\'")
+  :hook (web-mode . lsp-deferred)
+  :config
+  (setq web-mode-css-indent-offset 2)
+  (setq web-mode-code-indent-offset 2)
+  (setq web-mode-markup-indent-offset 2)
+  (setq web-mode-enable-auto-closing t)
+  ;; 0 is no auto-closing
+  ;; 1 is auto-close after "</"
+  ;; 2 is auto-close after ">" or "</"
+  (setq web-mode-tag-auto-close-style 1)
+  (setq web-mode-enable-current-column-highlight t))
 
-(require 'web-mode)
-(add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.tpl\\.php\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.[agj]sp\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.as[cp]x\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
+(use-package dockerfile-mode
+  :mode ("Dockerfile\\'"))
+
+(use-package yaml-mode
+  :mode ("\\.yml\\'"
+         "\\.yaml\\'")
+  :hook (yaml-mode . lsp-deferred))
+
+(use-package json-mode
+  :mode ("\\.json\\'")
+  :hook (json-mode . lsp-deferred)
+  :config
+  (setq js-indent-level 2)
+  (setq json-reformat:indent-width 2))
+
+(defun efs/display-startup-time ()
+  (message "loaded in %s seconds with %d garbage collections"
+	   (format "%.2f"
+		   (float-time
+		    (time-subtract after-init-time before-init-time)))
+	   gcs-done))
+(add-hook 'emacs-startup-hook #'efs/display-startup-time)
+
+;; Decrease garbage collection threshold:
+(setq gc-cons-threshold 2 * 1024 * 1024)
+
+;; Tell emacs to put its custom things somewhere else:
+(setq custom-file "~/.emacs-custom")
+(load custom-file)
