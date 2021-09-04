@@ -192,6 +192,9 @@
 	   gcs-done))
 (add-hook 'emacs-startup-hook #'efs/display-startup-time)
 
+;; Use special modes for special files:
+(add-to-list 'auto-mode-alist '(".zshrc.local" . shell-script-mode))
+
 ;; Decrease garbage collection threshold:
 (setq gc-cons-threshold 2 * 1024 * 1024)
 
