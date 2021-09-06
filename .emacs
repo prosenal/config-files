@@ -114,7 +114,7 @@
 ;;  5. sudo npm -g install typescript-language-server
 ;;  6. sudo npm -g install @angular/language-server
 ;;  7. sudo npm -g install @angular/language-service
-
+;;  8. yay -Syu jedi-language-server
 (use-package lsp-mode
   :commands (lsp lsp-deferred)
   :init
@@ -122,7 +122,7 @@
   :config
   (lsp-enable-which-key-integration t))
 
-;; Use company mode (aka complete anything)
+;; Company stands for "Complete Anything"
 (use-package company
   :after lsp-mode
   :config
@@ -138,18 +138,31 @@
   (company-minimum-prefix-length 1)
   (company-idle-delay 0.0))
 
-;; Use flycheck mode (aka complain about everything)
 (use-package flycheck
   :after lsp-mode)
 
-;; Typescript for Language Server Protocol
+(use-package dockerfile-mode
+  :mode ("Dockerfile\\'"))
+
+(use-package python-mode
+  :hook (python-mode . lsp-deferred))
+
+;; (use-package pyenv-mode
+;;  :after python-mode)
+
+(use-package lsp-jedi
+  :after lsp-mode
+  :config
+  (with-eval-after-load "lsp-mode"
+    (add-to-list 'lsp-enabled-clients 'jedi)
+    (add-to-list 'lsp-disabled-clients 'pyls)))
+
 (use-package typescript-mode
   :mode "\\.ts\\'"
   :hook (typescript-mode . lsp-deferred)
   :config
   (setq typescript-indent-level 2))
 
-;; WebMode for better .html handling
 (use-package web-mode
   :mode ("\\.css\\'"  ;; Consider using plain CSS mode instead?
          "\\.erb\\'"
@@ -168,9 +181,6 @@
   ;; 2 is auto-close after ">" or "</"
   (setq web-mode-tag-auto-close-style 1)
   (setq web-mode-enable-current-column-highlight t))
-
-(use-package dockerfile-mode
-  :mode ("Dockerfile\\'"))
 
 (use-package yaml-mode
   :mode ("\\.yml\\'"
