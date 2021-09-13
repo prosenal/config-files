@@ -122,12 +122,24 @@
 ;;  6. sudo npm -g install @angular/language-server
 ;;  7. sudo npm -g install @angular/language-service
 ;;  8. yay -Syu jedi-language-server
+;;  9. yay -Syu deno
+;; To enable a server for your mode, search for server-id here:
+;; https://github.com/emacs-lsp/lsp-mode/tree/master/clients
+;;
+;; For example, lsp-javascript.el provides definitions for:
+;;  1. ts-ls (typescript)
+;;  2. deno-ls (typescript)
+;; As well as that, lsp-angular.el provides angular-ls
 (use-package lsp-mode
   :commands (lsp lsp-deferred)
   :init
   (setq lsp-keymap-prefix "C-c l")
   :config
   (lsp-enable-which-key-integration t))
+;; (use-package lsp-ui
+;;   :commands (lsp-ui))
+(use-package helm-lsp
+  :commands (helm-lsp-workspace-buffer))
 
 ;; Company stands for "Complete Anything"
 (use-package company
