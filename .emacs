@@ -184,10 +184,12 @@
     (add-to-list 'lsp-disabled-clients 'pyls)))
 
 (use-package typescript-mode
-  :mode "\\.ts\\'"
   :hook (typescript-mode . lsp-deferred)
+  :mode "\\.ts\\'"
   :config
-  (setq typescript-indent-level 2))
+  (with-eval-after-load "lsp-mode"
+    (add-to-list 'lsp-enabled-clients 'deno-ls)
+    (add-to-list 'lsp-enabled-clients 'angular-ls)))
 
 (use-package web-mode
   :mode ("\\.css\\'"  ;; Consider using plain CSS mode instead?
