@@ -132,10 +132,9 @@
 ;; Company stands for "Complete Anything"
 (use-package company
   :after lsp-mode
+  :diminish company-mode
   :config
   (setq company-tooltip-align-annotations t)
-  :diminish company-mode
-  :hook (lsp-mode . company-mode)
   ;; :bind
   ;; (:map company-active-map
   ;;       ("<tab>" . company-complete-selection))
