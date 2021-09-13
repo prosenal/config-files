@@ -216,11 +216,13 @@
   :hook (yaml-mode . lsp-deferred))
 
 (use-package json-mode
-  :mode ("\\.json\\'")
   :hook (json-mode . lsp-deferred)
+  :mode ("\\.json\\'")
   :config
   (setq js-indent-level 2)
-  (setq json-reformat:indent-width 2))
+  (setq json-reformat:indent-width 2)
+  (with-eval-after-load "lsp-mode"
+    (add-to-list 'lsp-enabled-clients 'json-ls)))
 
 (defun efs/display-startup-time ()
   (message "loaded in %s seconds with %d garbage collections"
