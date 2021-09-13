@@ -177,7 +177,7 @@
 ;;  :after python-mode)
 
 (use-package lsp-jedi
-  :after lsp-mode
+  :after (lsp-mode python-mode)
   :config
   (with-eval-after-load "lsp-mode"
     (add-to-list 'lsp-enabled-clients 'jedi)
