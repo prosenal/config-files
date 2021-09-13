@@ -144,6 +144,19 @@
   (company-minimum-prefix-length 1)
   (company-idle-delay 0.0))
 
+(use-package projectile :diminish
+  :hook (projectile-mode . helm-mode)
+  :init
+  (setq projectile-switch-project-action #'projectile-dired)
+  (when (file-directory-p "~/Code")
+    (setq projectile-project-search-path '("~/Code")))
+  :config
+  (projectile-mode)
+  :custom
+  ((projectile-completion-system 'helm))
+  :bind-keymap
+  ("C-c p" . projectile-command-map))
+
 (use-package flycheck
   :after lsp-mode)
 
