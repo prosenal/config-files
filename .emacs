@@ -192,13 +192,13 @@
     (add-to-list 'lsp-enabled-clients 'angular-ls)))
 
 (use-package web-mode
+  :hook (web-mode . lsp-deferred)
   :mode ("\\.css\\'"  ;; Consider using plain CSS mode instead?
          "\\.erb\\'"
          "\\.html?\\'"
          ;; "\\.json\\'"
          "\\.djhtml\\'"
          "\\.mustache\\'")
-  :hook (web-mode . lsp-deferred)
   :config
   (setq web-mode-css-indent-offset 2)
   (setq web-mode-code-indent-offset 2)
@@ -211,9 +211,9 @@
   (setq web-mode-enable-current-column-highlight t))
 
 (use-package yaml-mode
+  :hook (yaml-mode . lsp-deferred)
   :mode ("\\.yml\\'"
-         "\\.yaml\\'")
-  :hook (yaml-mode . lsp-deferred))
+         "\\.yaml\\'"))
 
 (use-package json-mode
   :hook (json-mode . lsp-deferred)
