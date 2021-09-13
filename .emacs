@@ -170,7 +170,8 @@
   :mode ("CMakeLists.txt\\'"))
 
 (use-package python-mode
-  :hook (python-mode . lsp-deferred))
+  :hook (python-mode . lsp-deferred)
+  :mode "\\.py\\'")
 
 ;; (use-package pyenv-mode
 ;;  :after python-mode)
