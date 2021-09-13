@@ -166,6 +166,9 @@
 (use-package dockerfile-mode
   :mode ("Dockerfile\\'"))
 
+(use-package cmake-mode
+  :mode ("CMakeLists.txt\\'"))
+
 (use-package python-mode
   :hook (python-mode . lsp-deferred))
 
