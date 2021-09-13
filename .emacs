@@ -97,6 +97,10 @@
          ("C-x b" . helm-mini)
          ("C-x C-f" . helm-find-files)))
 
+;; The reason to use emacs
+(use-package magit
+  :commands (magit-status magit-get-current-branch))
+
 ;; Show available shortcuts
 (use-package which-key
   :diminish which-key-mode
