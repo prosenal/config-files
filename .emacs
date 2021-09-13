@@ -93,9 +93,12 @@
 
 ;; Fuzzy-match for everything
 (use-package helm
-  :bind (("M-x" . helm-M-x)
-         ("C-x b" . helm-mini)
-         ("C-x C-f" . helm-find-files)))
+  :config
+  (setq helm-split-window-default-side 'right)
+  :bind
+  (("M-x" . helm-M-x)
+   ("C-x b" . helm-mini)
+   ("C-x C-f" . helm-find-files)))
 
 ;; The reason to use emacs
 (use-package magit
