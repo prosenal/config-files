@@ -157,6 +157,9 @@
   :bind-keymap
   ("C-c p" . projectile-command-map))
 
+(use-package yasnippet
+  :after lsp-mode)
+
 (use-package flycheck
   :after lsp-mode)
 
