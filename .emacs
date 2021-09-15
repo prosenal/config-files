@@ -227,8 +227,7 @@
   :after (lsp-mode python-mode)
   :config
   (with-eval-after-load "lsp-mode"
-    (add-to-list 'lsp-enabled-clients 'jedi)
-    (add-to-list 'lsp-disabled-clients 'pyls)))
+    (add-to-list 'lsp-enabled-clients 'jedi)))
 
 (use-package typescript-mode
   :hook (typescript-mode . lsp-deferred)
