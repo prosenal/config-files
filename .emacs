@@ -132,6 +132,9 @@
    ("C-x b" . helm-mini)
    ("C-x C-f" . helm-find-files)))
 
+(use-package rg
+  :after helm)
+
 ;; The reason to use emacs
 (use-package magit
   :commands (magit-status magit-get-current-branch))
