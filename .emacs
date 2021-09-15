@@ -90,9 +90,23 @@
 (setq use-package-always-ensure t)
 
 ;;; Configure UI (theme)
+;; (load-theme 'manoj-dark t nil)
 (use-package
-  cyberpunk-theme
-  :config (load-theme 'cyberpunk t nil))
+  ample-theme
+  :config (load-theme 'ample t nil))
+;; (use-package
+;;   darktooth-theme
+;;   :config (load-theme 'darktooth t nil))
+;; (use-package
+;;   gruvbox-theme
+;;   :config (load-theme 'gruvbox-dark-hard t nil))
+;; (use-package kaolin-themes
+;;   :config
+;;   (load-theme 'kaolin-galaxy t nil))
+;; (use-package
+;;   cyberpunk-theme
+;;   :config (load-theme 'cyberpunk t nil))
+(use-package unobtrusive-magit-theme)
 
 ;;; Configure packages
 
