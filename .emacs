@@ -270,6 +270,13 @@
   (with-eval-after-load "lsp-mode"
     (add-to-list 'lsp-enabled-clients 'json-ls)))
 
+(use-package rust-mode
+  :hook (rust-mode . lsp-deferred)
+  :mode "\\.rs\\'"
+  :config
+  (with-eval-after-load "lsp-mode"
+    (add-to-list 'lsp-enabled-clients 'rls)))
+
 (defun efs/display-startup-time ()
   (message "loaded in %s seconds with %d garbage collections"
 	   (format "%.2f"
