@@ -22,9 +22,13 @@
 ;; 1. Highlight parenthesis by default
 (show-paren-mode t)
 ;; 2. Prevent parenthesis from being underlined:
-(set-face-attribute 'show-paren-match nil :underline nil)
+(set-face-attribute
+ 'show-paren-match nil
+ :underline nil)
 ;; 3. Prevent the font from "jumping around" slightly:
-(set-face-attribute 'show-paren-match nil :weight 'normal)
+(set-face-attribute
+ 'show-paren-match nil
+ :weight 'normal)
 
 ;; Automatically add a closing ), }, ], ", '.
 (electric-pair-mode t)
@@ -48,10 +52,19 @@
  :weight 'normal
  :slant 'normal
  :underline nil)
-
 (set-face-attribute
  'bold-italic nil
- :family "Fira Code Retina"
+ :family "Hack Nerd Font Mono"
+ :weight 'bold
+ :slant 'normal)
+(set-face-attribute
+ 'info-node nil
+ :family "Hack Nerd Font Mono"
+ :weight 'bold
+ :slant 'normal)
+(set-face-attribute
+ 'info-header-node nil
+ :family "Hack Nerd Font Mono"
  :weight 'bold
  :slant 'normal)
 
@@ -95,6 +108,11 @@
 (use-package helm
   :config
   (setq helm-split-window-default-side 'right)
+  (set-face-attribute
+   'helm-selection nil
+   :family "Hack Nerd Font Mono"
+   :weight 'normal
+   :slant 'normal)
   :bind
   (("M-x" . helm-M-x)
    ("C-x b" . helm-mini)
