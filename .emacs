@@ -137,7 +137,9 @@
 
 ;; The reason to use emacs
 (use-package magit
-  :commands (magit-status magit-get-current-branch))
+  :commands (magit-status magit-get-current-branch)
+  :config
+  (setq magit-blame-echo-style 'headings))
 
 ;; Show available shortcuts
 (use-package which-key
