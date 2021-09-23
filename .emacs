@@ -286,6 +286,9 @@
     (setq lsp-clients-kotlin-server-executable "/home/alex/Code/fwcd/kotlin-language-server/server/build/install/server/bin/kotlin-language-server")
     (add-to-list 'lsp-enabled-clients 'kotlin-ls)))
 
+(use-package antlr-mode
+  :mode "\\.g4\\'")
+
 (defun efs/display-startup-time ()
   (message "loaded in %s seconds with %d garbage collections"
 	   (format "%.2f"
