@@ -57,16 +57,6 @@
  :family "Hack Nerd Font Mono"
  :weight 'bold
  :slant 'normal)
-(set-face-attribute
- 'info-node nil
- :family "Hack Nerd Font Mono"
- :weight 'bold
- :slant 'normal)
-(set-face-attribute
- 'info-header-node nil
- :family "Hack Nerd Font Mono"
- :weight 'bold
- :slant 'normal)
 
 ;; Increase garbage collection threshold:
 (setq gc-cons-threshold 64 * 1024 * 1024)
@@ -137,7 +127,9 @@
 
 ;; The reason to use emacs
 (use-package magit
-  :commands (magit-status magit-get-current-branch))
+  :commands (magit-status magit-get-current-branch)
+  :config
+  (setq magit-blame-echo-style 'headings))
 
 ;; Show available shortcuts
 (use-package which-key
