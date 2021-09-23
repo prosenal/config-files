@@ -303,3 +303,5 @@
 ;; Tell emacs to put its custom things somewhere else:
 (setq custom-file "~/.emacs-custom")
 (load custom-file)
+
+(load "~/.emacs.d/horst.el")
