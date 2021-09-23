@@ -82,20 +82,29 @@
 ;;; Configure UI (theme)
 ;; (load-theme 'manoj-dark t nil)
 (use-package
-  ample-theme
-  :config (load-theme 'ample t nil))
-;; (use-package
-;;   darktooth-theme
-;;   :config (load-theme 'darktooth t nil))
+  darktooth-theme
+  :config (load-theme 'darktooth t nil))
 ;; (use-package
 ;;   gruvbox-theme
 ;;   :config (load-theme 'gruvbox-dark-hard t nil))
+;; (use-package
+;;   zenburn-theme
+;;   :config (load-theme 'zenburn t nil))
+;; (use-package
+;;   ample-theme
+;;   :config (load-theme 'ample t nil))
 ;; (use-package kaolin-themes
 ;;   :config
 ;;   (load-theme 'kaolin-galaxy t nil))
 ;; (use-package
 ;;   cyberpunk-theme
 ;;   :config (load-theme 'cyberpunk t nil))
+;; (use-package
+;;   flatland-theme
+;;   :config (load-theme 'flatland t nil))
+;; (use-package
+;;   inkpot-theme
+;;   :config (load-theme 'inkpot t nil))
 (use-package unobtrusive-magit-theme)
 
 ;;; Configure packages
