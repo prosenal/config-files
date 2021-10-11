@@ -272,7 +272,9 @@
     (add-to-list 'lsp-enabled-clients 'json-ls)))
 
 (use-package rust-mode
-  :hook (rust-mode . lsp-deferred)
+  :hook
+  (rust-mode . lsp-deferred)
+  (rust-mode . hs-minor-mode)
   :mode "\\.rs\\'"
   :config
   (with-eval-after-load "lsp-mode"
