@@ -276,6 +276,8 @@
 (use-package rust-mode
   :hook
   (rust-mode . lsp-deferred)
+  ;; See https://github.com/racer-rust/emacs-racer#installation
+  (rust-mode . racer-mode)
   (rust-mode . hs-minor-mode)
   :mode "\\.rs\\'"
   :config
