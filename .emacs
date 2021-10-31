@@ -255,7 +255,9 @@
   ;; 1 is auto-close after "</"
   ;; 2 is auto-close after ">" or "</"
   (setq web-mode-tag-auto-close-style 1)
-  (setq web-mode-enable-current-column-highlight t))
+  (setq web-mode-enable-current-column-highlight t)
+  (with-eval-after-load "lsp-mode"
+    (add-to-list 'lsp-enabled-clients 'html-ls)))
 
 (use-package yaml-mode
   :hook (yaml-mode . lsp-deferred)
