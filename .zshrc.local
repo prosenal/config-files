@@ -31,6 +31,16 @@ if type pyenv > /dev/null; then
     }
 fi
 
+function nvm() {
+    # Setup nvm the way the AUR package expects:
+    # https://aur.archlinux.org/cgit/aur.git/tree/nvm.install?h=nvm
+    [ -z "$NVM_DIR" ] && export NVM_DIR="$HOME/.nvm"
+    source /usr/share/nvm/nvm.sh
+    # source /usr/share/nvm/bash_completion
+    source /usr/share/nvm/install-nvm-exec
+    nvm
+}
+
 # This is for $HOME/Code/qt5, taken from:
 # https://wiki.qt.io/Building_Qt_5_from_Git#Configuring_and_Building
 export LLVM_INSTALL_DIR=/usr/include/llvm
