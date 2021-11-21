@@ -33,7 +33,7 @@ path=("$HOME/.cargo/bin" $path[@])
 # https://github.com/racer-rust/racer#configuration
 export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
 
-# This is for gPodder home directory, as per
+# This is for gPodder home directory, taken from
 # https://gpodder.github.io/docs/user-manual.html#changing-the-downloads-folder-location-and-the-gpodder-home-folder
 export GPODDER_HOME=/data-hdd/data-alex/gPodder
 
