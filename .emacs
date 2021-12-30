@@ -54,7 +54,7 @@
  :underline nil)
 (set-face-attribute
  'bold-italic nil
- :family "Hack Nerd Font Mono"
+ :family "Fira Code Retina"
  :weight 'bold
  :slant 'normal)
 
