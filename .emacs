@@ -281,8 +281,12 @@
   :mode "\\.ts\\'"
   :config
   (with-eval-after-load "lsp-mode"
-    (add-to-list 'lsp-enabled-clients 'deno-ls)
-    (add-to-list 'lsp-enabled-clients 'angular-ls)))
+    (if (file-exists-p (f-join (lsp-workspace-root) "angular.json"))
+        (and
+         (add-to-list 'lsp-enabled-clients 'angular-ls)
+         (add-to-list 'lsp-disabled-clients 'deno-ls))
+      (add-to-list 'lsp-enabled-clients 'deno-ls)
+      (add-to-list 'lsp-disabled-clients 'angular-ls))))
 
 (use-package web-mode
   :hook (web-mode . lsp-deferred)
@@ -303,7 +307,8 @@
   (setq web-mode-tag-auto-close-style 1)
   (setq web-mode-enable-current-column-highlight t)
   (with-eval-after-load "lsp-mode"
-    (add-to-list 'lsp-enabled-clients 'html-ls)))
+    ;; (add-to-list 'lsp-enabled-clients 'html-ls)
+    (add-to-list 'lsp-enabled-clients 'angular-ls)))
 
 (use-package yaml-mode
   :hook (yaml-mode . lsp-deferred)
