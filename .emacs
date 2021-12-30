@@ -171,9 +171,26 @@
   :init
   (setq lsp-keymap-prefix "C-c l")
   :config
-  (lsp-enable-which-key-integration t))
-;; (use-package lsp-ui
-;;   :commands (lsp-ui))
+  (lsp-enable-which-key-integration t)
+  :custom
+  ;; Configure lsp
+  (lsp-idle-delay 0.5)
+  (lsp-eldoc-render-all nil)
+  ;; Configure Rust
+  ;; Replace default "check" action with "clippy"
+  (lsp-rust-analyzer-cargo-watch-command "clippy")
+  (lsp-rust-analyzer-server-display-inlay-hints t))
+(use-package lsp-ui
+  :after lsp-mode
+  :commands (lsp-ui-mode)
+  :custom
+  (lsp-ui-doc-enable nil)
+  (lsp-ui-peek-enable nil)
+  (lsp-ui-peek-always-show nil)
+  (lsp-ui-sideline-show-hover nil)
+  (lsp-ui-sideline-update-mode 'point)
+  (lsp-ui-sideline-show-diagnostics t)
+  (lsp-ui-sideline-show-code-actions t))
 (use-package helm-lsp
   :commands (helm-lsp-workspace-buffer))
 
