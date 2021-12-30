@@ -222,8 +222,37 @@
   :bind-keymap
   ("C-c p" . projectile-command-map))
 
+;; Add snippet support, search for snippets with helm
+;; Use yas/describe-tables to see the available snippets
 (use-package yasnippet
-  :after lsp-mode)
+  :after lsp-mode
+  :config
+  (yas-minor-mode)
+  (add-to-list 'yas-prompt-functions 'shk-yas/helm-prompt))
+
+(defun shk-yas/helm-prompt (prompt choices &optional display-fn)
+  "Use helm to select a snippet. Put this into `yas/prompt-functions.'"
+  (interactive)
+  (setq display-fn (or display-fn 'identity))
+  (if (require 'helm-config)
+      (let (tmpsource cands result rmap)
+        (setq cands (mapcar (lambda (x) (funcall display-fn x)) choices))
+        (setq rmap (mapcar (lambda (x) (cons (funcall display-fn x) x)) choices))
+        (setq tmpsource
+              (list
+               (cons 'name prompt)
+               (cons 'candidates cands)
+               '(action . (("Expand" . (lambda (selection) selection))))
+               ))
+        (setq result (helm-other-buffer '(tmpsource) "*helm-select-yasnippet"))
+        (if (null result)
+            (signal 'quit "user quit!")
+          (cdr (assoc result rmap))))
+    nil))
+
+;; Add a (large) collection of snippets
+(use-package yasnippet-snippets
+  :after yasnippet)
 
 (use-package flycheck
   :after lsp-mode)
