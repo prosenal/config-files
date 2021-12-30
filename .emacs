@@ -134,7 +134,7 @@
 (use-package rg
   :after helm)
 
-;; The reason to use emacs
+;; Reason one to use emacs
 (use-package magit
   :commands (magit-status magit-get-current-branch)
   :config
