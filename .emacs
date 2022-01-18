@@ -176,15 +176,19 @@
   ;; Configure lsp
   (lsp-idle-delay 0.5)
   (lsp-eldoc-render-all nil)
+  (lsp-signature-auto-activate nil)
+  (lsp-signature-render-documentation nil)
   ;; Configure Rust
   ;; Replace default "check" action with "clippy"
   (lsp-rust-analyzer-cargo-watch-command "clippy")
   (lsp-rust-analyzer-server-display-inlay-hints t))
+;; If confused which parts of lsp-ui are called what, consult this:
+;; https://emacs-lsp.github.io/lsp-mode/tutorials/how-to-turn-off
 (use-package lsp-ui
   :after lsp-mode
   :commands (lsp-ui-mode)
   :custom
-  (lsp-ui-doc-enable nil)
+  (lsp-ui-doc-enable t)
   (lsp-ui-peek-enable nil)
   (lsp-ui-peek-always-show nil)
   (lsp-ui-sideline-show-hover nil)
@@ -382,4 +386,8 @@
 (setq custom-file "~/.emacs-custom")
 (load custom-file)
 
-(load "~/.emacs.d/horst.el")
+;; Use emacs as an email client (needs extra setup!)
+(load "~/.emacs-custom.d/emacs-mu4e.el")
+
+;; Provide a small custom major mode
+(load "~/.emacs-custom.d/horst.el")
